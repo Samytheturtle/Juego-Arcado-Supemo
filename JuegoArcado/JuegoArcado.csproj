@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="FondoAhorcado.jpg" />
+    <None Remove="FondoEditarInformacionUsuario.jpg" />
+    <None Remove="FondoInicio.jpg" />
+    <None Remove="FondoListaPartidas.jpg" />
+    <None Remove="FondoNuevaPartida.jpg" />
+    <None Remove="FondoPerfilPrincipal.jpg" />
+    <None Remove="FondoRegistroUsuario.jpg" />
+    <None Remove="Horca.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="FondoAhorcado.jpg" />
+    <Resource Include="FondoEditarInformacionUsuario.jpg" />
+    <Resource Include="FondoInicio.jpg" />
+    <Resource Include="FondoListaPartidas.jpg" />
+    <Resource Include="FondoNuevaPartida.jpg" />
+    <Resource Include="FondoPerfilPrincipal.jpg" />
+    <Resource Include="FondoRegistroUsuario.jpg" />
+    <Resource Include="Horca.png" />
+  </ItemGroup>
+
+</Project>

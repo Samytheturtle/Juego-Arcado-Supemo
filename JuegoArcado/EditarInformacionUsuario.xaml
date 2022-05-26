@@ -1,0 +1,31 @@
+﻿<Window x:Class="JuegoArcado.EditarInformacionUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JuegoArcado"
+        mc:Ignorable="d"
+      Title="Editar Informacion Usuario">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/FondoEditarInformacionUsuario.jpg"/>
+        </Grid.Background>
+        <Label Content="Información Personal" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="36" FontFamily="Bernard MT Condensed"/>
+        <Label Content="Nombre :" HorizontalAlignment="Left" Margin="42,83,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFEEF5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Apellidos :" HorizontalAlignment="Left" Margin="37,146,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="37,217,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Numero Telefonico :" HorizontalAlignment="Left" Margin="37,283,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Contraseña :" HorizontalAlignment="Left" Margin="457,146,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Confirmar Contraseña :" HorizontalAlignment="Left" Margin="516,234,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Guardar Información" HorizontalAlignment="Left" Margin="639,378,0,0" VerticalAlignment="Top" Height="28" Width="131"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="42,364,0,0" VerticalAlignment="Top" Width="133" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="245,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="245,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="245,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="245,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="587,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="468,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" Height="28"/>
+
+    </Grid>
+</Window>
