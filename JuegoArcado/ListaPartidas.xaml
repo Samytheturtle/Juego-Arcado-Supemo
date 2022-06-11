@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/FondoListaPartidas.jpg"/>
         </Grid.Background>
-        <DataGrid x:Name="dgAlumnos" Margin="338,28,20,20" AutoGenerateColumns="False" IsReadOnly="True" Background="#FFF0F0F0" Opacity="0.75">
+        <DataGrid x:Name="dgPartidasJugadores" Margin="338,28,20,20" AutoGenerateColumns="False" IsReadOnly="True" Background="#FFF0F0F0" Opacity="0.75">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Sheriff★" Width="*" Binding="{Binding Nombre}"/>
                 <DataGridTextColumn Header="Correo" Width="*" Binding="{Binding Apellidos}"/>
