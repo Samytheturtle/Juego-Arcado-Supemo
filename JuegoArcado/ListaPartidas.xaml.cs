@@ -23,5 +23,25 @@ namespace JuegoArcado
         {
             InitializeComponent();
         }
+
+        private void BotonVerPerfil(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotonVerPuntajeGlobal(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotonCrearPartida(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotonIniciarPartida(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

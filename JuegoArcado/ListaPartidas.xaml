@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/FondoListaPartidas.jpg"/>
         </Grid.Background>
-        <DataGrid x:Name="dgPartidasJugadores" Margin="338,28,20,20" AutoGenerateColumns="False" IsReadOnly="True" Background="#FFF0F0F0" Opacity="0.75">
+        <DataGrid x:Name="dgPartidasJugadores" Margin="338,28,20,53" AutoGenerateColumns="False" IsReadOnly="True" Background="#FFF0F0F0" Opacity="0.75">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Sheriff★" Width="*" Binding="{Binding Nombre}"/>
                 <DataGridTextColumn Header="Correo" Width="*" Binding="{Binding Apellidos}"/>
@@ -19,5 +19,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Lista del Sheriff" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" FontSize="24" Width="230"/>
+        <Button Content="Ver perfil" HorizontalAlignment="Left" Height="34" Margin="50,75,0,0" VerticalAlignment="Top" Width="88" Click="BotonVerPerfil"/>
+        <Button Content="Ver puntaje global" HorizontalAlignment="Left" Height="34" Margin="28,380,0,0" VerticalAlignment="Top" Width="132" Click="BotonVerPuntajeGlobal"/>
+        <Button Content="Crear nueva partida" HorizontalAlignment="Left" Height="34" Margin="338,390,0,0" VerticalAlignment="Top" Width="135" Click="BotonCrearPartida"/>
+        <Button Content="Iniciar partida" HorizontalAlignment="Left" Height="34" Margin="645,390,0,0" VerticalAlignment="Top" Width="135" Click="BotonIniciarPartida"/>
     </Grid>
 </Window>
