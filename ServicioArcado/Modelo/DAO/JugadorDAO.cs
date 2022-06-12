@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using ServiciosNotas.Modelo.Poco;
+using ServicioArcado.Modelo.POCO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,6 @@ namespace ServicioArcado.Modelo.DAO
 {
     public class JugadorDAO
     {
-        public static Jugador 
+       
     }
 }
