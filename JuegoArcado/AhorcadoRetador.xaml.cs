@@ -27,22 +27,27 @@ namespace JuegoArcado
         {
             
             InitializeComponent();
-            String direccion = "ahorcadoSprite2.png";
 
+            String direccion = "/ImagenesJuegos/FondoAhorcado.jpg";
             BitmapImage sprite = new BitmapImage();
             sprite.BeginInit();
             sprite.UriSource = new Uri(direccion, UriKind.Relative);
             sprite.EndInit();
-            spriteAhorcado.Source = sprite;
+            ImagenJuego.Source = sprite;
 
         }
 
         private void clickBtnIncorrecto(object sender, RoutedEventArgs e)
         {
             lbProgresoPalabra.Content = "- - - - - - - - -";
-            //< Image x: Name = "spriteAhorcado" Source = "/ahorcado_sprite_1.png" HorizontalAlignment = "Left" Height = "338" Width = "338" Margin = "302,0,0,0" Grid.Row = "1" VerticalAlignment = "Top" />
-            //        <Rectangle x:Name="spriteAhorcado" HorizontalAlignment="Left" Height="338" Width="338" Margin="302,0,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top"/>
-            //"C:/Users/ThinkPad/Source/Repos/Samytheturtle/Juego-Arcado-Supemo/JuegoArcado/ImagenesJuegos/AhorcadoSprites/ahorcado_sprite_7.png"
+            InitializeComponent();
+
+            String direccion = "/ImagenesPartidas/ahorcadoSprite2.png";
+            BitmapImage sprite = new BitmapImage();
+            sprite.BeginInit();
+            sprite.UriSource = new Uri(direccion, UriKind.Relative);
+            sprite.EndInit();
+            ImagenJuego.Source = sprite;
         }
     }
 }

@@ -8,7 +8,7 @@
         Title="AhorcadoRetador" Height="790" Width="960">
     <Grid Margin="0,0,0,-6">
         <Grid.Background>
-            <ImageBrush ImageSource="/ImagenesJuegos/FondoWestern.jpg"/>
+            <ImageBrush ImageSource="/FondoWestern.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
@@ -23,8 +23,6 @@
 
         <Label Content="Dificultad:" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="16,181,0,0" VerticalAlignment="Top" Width="290" Grid.Row="1"/>
         <Label x:Name="dificultad" Content="Dificultad Text" FontSize="18" HorizontalAlignment="Left" Margin="16,215,0,0" VerticalAlignment="Top" Width="290" Grid.Row="1"/>
-
-        <Image x:Name ="spriteAhorcado" HorizontalAlignment = "Left" Height = "338" Width = "338" Margin = "302,0,0,0" Grid.Row = "1" VerticalAlignment = "Top" />
         <Label Content="Palabra :" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="662,76,0,0" VerticalAlignment="Top" Width="286" Grid.Row="1"/>
         <Label x:Name="palabra" Content="Palabra text" FontSize="18" HorizontalAlignment="Left" Margin="662,110,0,0" VerticalAlignment="Top" Width="286" Grid.Row="1" Height="34"/>
 
@@ -35,5 +33,6 @@
         <Button Content="Incorrecto" Foreground="White" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="555,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="Red" Click="clickBtnIncorrecto" />
 
         <Button Content="Salir" FontSize="25" HorizontalAlignment="Left" Margin="798,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="48" Width="125"/>
+        <Image x:Name="ImagenJuego" HorizontalAlignment="Left" Height="300" Margin="268,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="380"/>
     </Grid>
 </Window>
