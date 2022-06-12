@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlConnector;
 using ServicioArcado.Modelo.POCO;
 using System;
 using System.Collections.Generic;
