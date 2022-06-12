@@ -26,12 +26,12 @@
         <Label Content="Palabra :" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="662,76,0,0" VerticalAlignment="Top" Width="286" Grid.Row="1"/>
         <Label x:Name="lbPalabra" Content="Palabra text" FontSize="18" HorizontalAlignment="Left" Margin="662,110,0,0" VerticalAlignment="Top" Width="286" Grid.Row="1" Height="34"/>
 
-        <Image x:Name="SpriteAhorcado" Source="/AhorcadoSprite1.png" HorizontalAlignment="Center" Height="338" Width="338" Margin="0,85,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Stretch="Uniform"/>
+        <Image x:Name="SpriteAhorcado" Source="/AhorcadoSprite2.png" HorizontalAlignment="Center" Height="338" Width="338" Margin="0,85,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Stretch="Uniform"/>
 
-        <Label x:Name="lbProgresoPalabra" Content="A  H  O  R  C  A  -  O " FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794" HorizontalContentAlignment="Center" Height="52" Background="AntiqueWhite"/>
+        <Label x:Name="lbProgresoPalabra" Content="" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794" HorizontalContentAlignment="Center" Height="52" Background="AntiqueWhite"/>
 
-        <Label x:Name="lbInstruccionRetador" Foreground="White" Content="El Jugador ha seleccionado la letra &quot;A&quot;" FontSize="30" FontWeight="Bold" BorderBrush="OrangeRed" BorderThickness="3" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="646"/>
-        
+        <Label x:Name="lbInstruccionRetador" Foreground="White" Content="" FontSize="30" FontWeight="Bold" BorderBrush="OrangeRed" BorderThickness="3" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="928"/>
+
         <Button x:Name="BtnCorrecto" Content="Correcto" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="217,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="SpringGreen" Click="ClickBtnCorrecto"/>
         <Button x:Name="BtnIncorrecto" Content="Incorrecto" Foreground="White" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="555,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="Red" Click="ClickBtnIncorrecto" />
 

@@ -13,31 +13,62 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Media;
-//using JuegoArcado.AhorcadoSprites;
 
 namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
-        public String palabraCompleta = "CASA";
+        public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
 
         public String progresoPalabra = "";
         public Char[] cadenaProgresoPalabra;
 
-        public Char letra = 'Z';
-        public int progresoMuñeco = 1;
+        public Char letra = ' ';
+        public int progresoMuñeco = 2;
+        public char guion = '-';
  
 
         public AhorcadoRetador()
         {
             
             InitializeComponent();
+            palabraCompleta = "WINDOWS";
             cadenaPalabraCompleta = palabraCompleta.ToCharArray();
+
+            progresoPalabra = palabraCompleta;
+            cadenaProgresoPalabra = progresoPalabra.ToCharArray();
+
             lbPalabra.Content = palabraCompleta;
-            Console.WriteLine(cadenaPalabraCompleta);
-            Console.WriteLine(letra);
+            InicializarProgresoPalabra();
+            
         }
+
+        private void InicializarDatos(String nombreJugador, String palabra)
+        {
+            lbNombreJugador.Content = nombreJugador;
+            palabraCompleta = palabra;
+        }
+
+        private void InicializarProgresoPalabra()
+        {
+            progresoPalabra = "";
+            for(int i = 0; i < palabraCompleta.Length; i++)
+            {
+                cadenaProgresoPalabra[i] = guion;
+                progresoPalabra = progresoPalabra + " " + cadenaProgresoPalabra[i];
+            }
+            lbProgresoPalabra.Content = progresoPalabra;
+        }
+
+        public void RecibirLetra(Char nuevaLetra)
+        {
+            letra = nuevaLetra;
+            lbInstruccionRetador.Content = "El Jugador ha seleccionado la letra "+nuevaLetra;
+            BtnCorrecto.IsEnabled = true;
+            BtnIncorrecto.IsEnabled = true;
+        }
+
 
         private void ClickBtnCorrecto(object sender, RoutedEventArgs e)
         {
@@ -46,6 +77,7 @@ namespace JuegoArcado
             Boolean existe = ComprobarLetra();
             if (existe)
             {
+                ActualizarProgreso();
                 lbInstruccionRetador.Content = "Colocando letras...";                
             }
             else
@@ -53,6 +85,7 @@ namespace JuegoArcado
                 if (progresoMuñeco != 1) { progresoMuñeco--; }
                 lbInstruccionRetador.Content = "PENALIZADO, "+palabraCompleta+" No contiene la letra " + letra;
                 ColocarExtremidadAhorcado(progresoMuñeco);
+                ActualizarProgreso();
             }
         }
 
@@ -73,13 +106,8 @@ namespace JuegoArcado
                 if (progresoMuñeco != 1) { progresoMuñeco--; }
                 lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
                 ColocarExtremidadAhorcado(progresoMuñeco);
+                ActualizarProgreso();
             }
-        }
-
-        private void EnviarProgresoPalabra(String progreso)
-        {
-
-            //EnviarProgreso(estadoMuñeco, progresoPalabra
         }
 
         private void ColocarExtremidadAhorcado(int numSprite)
@@ -112,16 +140,29 @@ namespace JuegoArcado
 
         private String ColocarLetrasAPalabra()
         {
-            String palabraActualizada = "";
+            progresoPalabra = "";
+            for(int i = 0; i < cadenaPalabraCompleta.Length; i++)
+            {
+                if (cadenaPalabraCompleta[i].Equals(letra)){
+                    cadenaProgresoPalabra[i] = letra;
+                }
+                progresoPalabra = progresoPalabra + " " + cadenaProgresoPalabra[i];
+            }
 
+            return progresoPalabra;
+        }
 
-            return palabraActualizada;
+        private void ActualizarProgreso()
+        {            
+            lbProgresoPalabra.Content = ColocarLetrasAPalabra();
+            //ActualizarProgresoJugador(progresoMuñeco, progresoPalabra);
         }
 
         private void BtnSalir(object sender, RoutedEventArgs e)
         {
-            BtnCorrecto.IsEnabled = true;
-            BtnIncorrecto.IsEnabled = true;
+            RecibirLetra('H');
+            //BtnCorrecto.IsEnabled = true;
+            //BtnIncorrecto.IsEnabled = true;
             //this.Close();
         }
     }

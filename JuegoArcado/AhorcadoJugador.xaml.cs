@@ -68,7 +68,6 @@ namespace JuegoArcado
                 HabilitarBotonesLetras(false);
                 //MetodoQueMandaLaLetraAlRetador();
                 ColocarInstruccion("Esperando al Retador");
-
             }
             else
             {
