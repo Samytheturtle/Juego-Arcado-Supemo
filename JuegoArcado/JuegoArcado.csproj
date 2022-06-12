@@ -8,27 +8,49 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ahorcado_sprite_1.png" />
-    <None Remove="FondoAhorcado.jpg" />
-    <None Remove="FondoInicio.jpg" />
-    <None Remove="FondoListaPartidas.jpg" />
-    <None Remove="FondoNuevaPartida.jpg" />
-    <None Remove="FondoRegistroUsuario.jpg" />
-    <None Remove="FondoWestern.jpg" />
-    <None Remove="Horca.png" />
-    <None Remove="TituloJuego.png" />
+    <Compile Remove="ImagenesPartidas\**" />
+    <EmbeddedResource Remove="ImagenesPartidas\**" />
+    <None Remove="ImagenesPartidas\**" />
+    <Page Remove="ImagenesPartidas\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="ahorcado_sprite_1.png" />
+    <None Remove="AhorcadoSprite1.png" />
+    <None Remove="AhorcadoSprite2.png" />
+    <None Remove="AhorcadoSprite3.png" />
+    <None Remove="AhorcadoSprite4.png" />
+    <None Remove="AhorcadoSprite5.png" />
+    <None Remove="AhorcadoSprite6.png" />
+    <None Remove="AhorcadoSprite7.png" />
+    <None Remove="ahorcado_sprite_1.png" />
+    <None Remove="FondoAhorcado.jpg" />
+    <None Remove="FondoEditarInformacionUsuario.jpg" />
+    <None Remove="FondoInicio.jpg" />
+    <None Remove="FondoListaPartidas.jpg" />
+    <None Remove="FondoNuevaPartida.jpg" />
+    <None Remove="FondoPerfilPrincipal.jpg" />
+    <None Remove="FondoRegistroUsuario.jpg" />
+    <None Remove="FondoWestern.jpg" />
+    <None Remove="Horca.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="AhorcadoSprite1.png" />
+    <Resource Include="AhorcadoSprite2.png" />
+    <Resource Include="AhorcadoSprite3.png" />
+    <Resource Include="AhorcadoSprite4.png" />
+    <Resource Include="AhorcadoSprite5.png" />
+    <Resource Include="AhorcadoSprite6.png" />
+    <Resource Include="AhorcadoSprite7.png" />
     <Resource Include="FondoAhorcado.jpg" />
+    <Resource Include="FondoEditarInformacionUsuario.jpg" />
     <Resource Include="FondoInicio.jpg" />
     <Resource Include="FondoListaPartidas.jpg" />
     <Resource Include="FondoNuevaPartida.jpg" />
+    <Resource Include="FondoPerfilPrincipal.jpg" />
     <Resource Include="FondoRegistroUsuario.jpg" />
     <Resource Include="FondoWestern.jpg" />
     <Resource Include="Horca.png" />
-    <Resource Include="TituloJuego.png" />
   </ItemGroup>
 
 </Project>

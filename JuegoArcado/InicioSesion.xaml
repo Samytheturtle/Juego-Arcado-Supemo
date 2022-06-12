@@ -10,11 +10,20 @@
         <Grid.Background>
             <ImageBrush ImageSource="/FondoInicio.jpg"/>
         </Grid.Background>
-        <Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="467,349,0,0" VerticalAlignment="Top" Height="30" Width="105" FontSize="16" RenderTransformOrigin="0.5,0.5" Click="BotonClicInicio"/>
-        <Button Content="Registrarse" HorizontalAlignment="Left" Margin="232,349,0,0" VerticalAlignment="Top" Height="31" Width="88" FontSize="16" Click="BotonClicCancelar"/>
-        <TextBox x:Name="CajaDTextoCorreo" HorizontalAlignment="Center" Margin="0,158,0,0" TextWrapping="Wrap" Text="Correo electronico" VerticalAlignment="Top" Width="336" Height="28" FontSize="18" GotFocus="CajaDeTextoCorreo"/>
-        <TextBox x:Name="CajaDTextoContrasenia" HorizontalAlignment="Center" Margin="0,237,0,0" TextWrapping="Wrap" Text="Ingresa tu contraseña" VerticalAlignment="Top" Width="336" Height="28" FontSize="18" GotFocus="CajaDeTextoContrasenia"/>
-        <Image Margin="48,24,48,305" Source="/ImagenesJuegos/FondoPerfilPrincipal.jpg" Stretch="Fill"/>
+        <Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="467,349,0,0" VerticalAlignment="Top" Height="30" Width="105" FontSize="16" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.356"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Registrarse" HorizontalAlignment="Left" Margin="232,349,0,0" VerticalAlignment="Top" Height="31" Width="88" FontSize="16"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,158,0,0" TextWrapping="Wrap" Text="Correo electronico" VerticalAlignment="Top" Width="336" Height="28" FontSize="18"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,237,0,0" TextWrapping="Wrap" Text="Ingresa tu contraseña" VerticalAlignment="Top" Width="336" Height="28" FontSize="18"/>
+        <Image Margin="48,25,48,304" Source="/ImagenesJuegos/TituloJuego.png" Stretch="Fill"/>
 
     </Grid>
 </Window>

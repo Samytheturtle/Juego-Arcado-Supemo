@@ -16,38 +16,93 @@ using System.Media;
 //using JuegoArcado.AhorcadoSprites;
 
 namespace JuegoArcado
-{
-    /// <summary>
-    /// Lógica de interacción para AhorcadoRetador.xaml
-    /// </summary>
+{  
     public partial class AhorcadoRetador : Window
     {
+        String palabraCompleta = "CASA";
+
+        public Char letra = 'Z';
+        public int muñeco = 1;
+        public Char[] cadenaPalabraCompleta;
 
         public AhorcadoRetador()
         {
             
             InitializeComponent();
-
-            String direccion = "/ImagenesJuegos/FondoAhorcado.jpg";
-            BitmapImage sprite = new BitmapImage();
-            sprite.BeginInit();
-            sprite.UriSource = new Uri(direccion, UriKind.Relative);
-            sprite.EndInit();
-            ImagenJuego.Source = sprite;
-
+            cadenaPalabraCompleta = palabraCompleta.ToCharArray();
+            lbPalabra.Content = palabraCompleta;
+            Console.WriteLine(cadenaPalabraCompleta);
+            Console.WriteLine(letra);
         }
 
-        private void clickBtnIncorrecto(object sender, RoutedEventArgs e)
+        private void BtnCorrecto(object sender, RoutedEventArgs e)
         {
-            lbProgresoPalabra.Content = "- - - - - - - - -";
-            InitializeComponent();
+            Boolean existe = ComprobarLetra();
+            if (existe)
+            {
+                lbInstruccionRetador.Content = "Colocando letras...";                
+            }
+            else
+            {
+                if (muñeco != 1) { muñeco--; }
+                lbInstruccionRetador.Content = "PENALIZADO, Si existe " + letra;
+                ColocarExtremidadAhorcado(muñeco);
+            }
+        }
 
-            String direccion = "/ImagenesPartidas/ahorcadoSprite2.png";
+        private void BtnIncorrecto(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(cadenaPalabraCompleta);
+            Boolean existe = ComprobarLetra();
+            if (!existe)
+            {
+                muñeco++;
+                ColocarExtremidadAhorcado(muñeco);
+            }
+            else
+            {
+                if (muñeco != 1) { muñeco--; }
+                lbInstruccionRetador.Content = "PENALIZADO, Si existe "+letra;
+                ColocarExtremidadAhorcado(muñeco);
+            }
+        }
+
+        private void BtnSalir(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ColocarExtremidadAhorcado(int numSprite)
+        {
             BitmapImage sprite = new BitmapImage();
             sprite.BeginInit();
-            sprite.UriSource = new Uri(direccion, UriKind.Relative);
+            sprite.UriSource = new Uri("/AhorcadoSprite"+numSprite+".png", UriKind.Relative);
             sprite.EndInit();
-            ImagenJuego.Source = sprite;
+            SpriteAhorcado.Source = sprite;
+        }
+
+        private Boolean ComprobarLetra()
+        {
+            Boolean existe = false;
+            int i = 0;
+            int tamanoCadena = cadenaPalabraCompleta.Length;
+            tamanoCadena--;
+            do
+            {
+                if (cadenaPalabraCompleta[i].Equals(letra))
+                {
+                    existe = true;
+                }
+                i++;
+
+            } while (i <  tamanoCadena);
+            return existe;
+            
+        }
+
+        private void enviarProgresoPalabra(String progreso)
+        {
+
         }
     }
 }
