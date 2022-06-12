@@ -61,12 +61,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AhorcadoSupremo.svc" />
+    <Content Include="ServicioAhorcadoSupremo.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AhorcadoSupremo.svc.cs">
-      <DependentUpon>AhorcadoSupremo.svc</DependentUpon>
+    <Compile Include="ServicioAhorcadoSupremo.svc.cs">
+      <DependentUpon>ServicioAhorcadoSupremo.svc</DependentUpon>
     </Compile>
     <Compile Include="IServicioAhorcadoSupremo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
