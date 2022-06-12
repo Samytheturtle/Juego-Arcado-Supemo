@@ -24,9 +24,11 @@
     <None Remove="AhorcadoSprite7.png" />
     <None Remove="ahorcado_sprite_1.png" />
     <None Remove="FondoAhorcado.jpg" />
+    <None Remove="FondoEditarInformacionUsuario.jpg" />
     <None Remove="FondoInicio.jpg" />
     <None Remove="FondoListaPartidas.jpg" />
     <None Remove="FondoNuevaPartida.jpg" />
+    <None Remove="FondoPerfilPrincipal.jpg" />
     <None Remove="FondoRegistroUsuario.jpg" />
     <None Remove="FondoWestern.jpg" />
     <None Remove="Horca.png" />

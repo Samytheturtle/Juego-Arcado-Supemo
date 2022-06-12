@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/FondoPerfilPrincipal.jpg"/>
         </Grid.Background>
-        <Label Content="Puntaje Global :" HorizontalAlignment="Left" Margin="592,0,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Puntaje total:" HorizontalAlignment="Left" Margin="592,0,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="20"/>
         <DataGrid x:Name="dgPartidas" AutoGenerateColumns="False" IsReadOnly="True" Margin="51,217,49,28" Opacity="0.75">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Fecha de Partida" Width="*"/>

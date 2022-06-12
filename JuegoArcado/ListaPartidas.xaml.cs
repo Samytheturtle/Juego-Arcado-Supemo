@@ -26,20 +26,36 @@ namespace JuegoArcado
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
         {
-
+            PerfilPrincipal ventanaPerfilPrincial= new PerfilPrincipal();
+            this.Close();
+            ventanaPerfilPrincial.ShowDialog();
         }
 
         private void BotonVerPuntajeGlobal(object sender, RoutedEventArgs e)
         {
-
+            VerPuntajes ventanaPuntajesglobales = new VerPuntajes();
+            this.Close();
+            ventanaPuntajesglobales.ShowDialog();
         }
 
         private void BotonCrearPartida(object sender, RoutedEventArgs e)
         {
-
+            NuevaPartida ventanaNuevaPartida = new NuevaPartida();
+            this.Close();
+            ventanaNuevaPartida.ShowDialog();
         }
 
         private void BotonIniciarPartida(object sender, RoutedEventArgs e)
+        {
+           // dgPartidasJugadores
+        }
+
+        private void BotonModificarPerfil(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BotonSalir(object sender, RoutedEventArgs e)
         {
 
         }
