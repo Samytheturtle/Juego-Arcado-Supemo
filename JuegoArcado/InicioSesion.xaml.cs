@@ -24,5 +24,27 @@ namespace JuegoArcado
         {
             InitializeComponent();
         }
+
+        private void BotonClicInicio(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+        private void BotonClicCancelar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CajaDeTextoCorreo(object sender, RoutedEventArgs e)
+        {
+            CajaDTextoCorreo.Clear();
+
+
+        }
+
+        private void CajaDeTextoContrasenia(object sender, RoutedEventArgs e)
+        { 
+            CajaDTextoContrasenia.Clear();
+        }
     }
 }

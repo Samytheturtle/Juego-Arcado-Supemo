@@ -18,6 +18,7 @@
     <None Remove="FondoRegistroUsuario.jpg" />
     <None Remove="FondoWestern.jpg" />
     <None Remove="Horca.png" />
+    <None Remove="TituloJuego.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,7 @@
     <Resource Include="FondoRegistroUsuario.jpg" />
     <Resource Include="FondoWestern.jpg" />
     <Resource Include="Horca.png" />
+    <Resource Include="TituloJuego.png" />
   </ItemGroup>
 
 </Project>
