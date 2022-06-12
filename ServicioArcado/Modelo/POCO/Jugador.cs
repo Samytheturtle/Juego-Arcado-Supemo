@@ -11,9 +11,9 @@ namespace ServicioArcado.Modelo.POCO
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string FechaNacimiento { get; set; }
-        public string celular { get; set; }
-        public string correoElectronico { get; set; }
-        public string password { get; set; }
-        public int puntaje { get; set; }
+        public string Celular { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Password { get; set; }
+        public int Puntaje { get; set; }
     }
 }
