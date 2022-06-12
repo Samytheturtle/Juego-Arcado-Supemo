@@ -31,8 +31,9 @@
         <Label x:Name="lbProgresoPalabra" Content="A  H  O  R  C  A  -  O " FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794" HorizontalContentAlignment="Center" Height="52" Background="AntiqueWhite"/>
 
         <Label x:Name="lbInstruccionRetador" Foreground="White" Content="El Jugador ha seleccionado la letra &quot;A&quot;" FontSize="30" FontWeight="Bold" BorderBrush="OrangeRed" BorderThickness="3" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="646"/>
-        <Button Content="Correcto" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="217,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="SpringGreen" Click="BtnCorrecto"/>
-        <Button Content="Incorrecto" Foreground="White" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="555,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="Red" Click="BtnIncorrecto" />
+        
+        <Button x:Name="BtnCorrecto" Content="Correcto" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="217,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="SpringGreen" Click="ClickBtnCorrecto"/>
+        <Button x:Name="BtnIncorrecto" Content="Incorrecto" Foreground="White" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="555,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="Red" Click="ClickBtnIncorrecto" />
 
         <Button Content="Salir" FontSize="25" HorizontalAlignment="Left" Margin="798,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="48" Width="125" Click="BtnSalir"/>
     </Grid>

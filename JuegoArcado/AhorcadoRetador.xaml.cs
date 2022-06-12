@@ -19,11 +19,15 @@ namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
-        String palabraCompleta = "CASA";
+        public String palabraCompleta = "CASA";
+        public Char[] cadenaPalabraCompleta;
+
+        public String progresoPalabra = "";
+        public Char[] cadenaProgresoPalabra;
 
         public Char letra = 'Z';
-        public int muñeco = 1;
-        public Char[] cadenaPalabraCompleta;
+        public int progresoMuñeco = 1;
+ 
 
         public AhorcadoRetador()
         {
@@ -35,8 +39,10 @@ namespace JuegoArcado
             Console.WriteLine(letra);
         }
 
-        private void BtnCorrecto(object sender, RoutedEventArgs e)
+        private void ClickBtnCorrecto(object sender, RoutedEventArgs e)
         {
+            BtnCorrecto.IsEnabled = false;
+            BtnIncorrecto.IsEnabled = false;
             Boolean existe = ComprobarLetra();
             if (existe)
             {
@@ -44,32 +50,36 @@ namespace JuegoArcado
             }
             else
             {
-                if (muñeco != 1) { muñeco--; }
-                lbInstruccionRetador.Content = "PENALIZADO, Si existe " + letra;
-                ColocarExtremidadAhorcado(muñeco);
+                if (progresoMuñeco != 1) { progresoMuñeco--; }
+                lbInstruccionRetador.Content = "PENALIZADO, "+palabraCompleta+" No contiene la letra " + letra;
+                ColocarExtremidadAhorcado(progresoMuñeco);
             }
         }
 
-        private void BtnIncorrecto(object sender, RoutedEventArgs e)
+        private void ClickBtnIncorrecto(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(cadenaPalabraCompleta);
+            BtnCorrecto.IsEnabled = false;
+            BtnIncorrecto.IsEnabled = false;
             Boolean existe = ComprobarLetra();
             if (!existe)
             {
-                muñeco++;
-                ColocarExtremidadAhorcado(muñeco);
+                lbInstruccionRetador.Content = "Colocando Extremidad...";
+                progresoMuñeco++;
+                ColocarExtremidadAhorcado(progresoMuñeco);
+                //ActualizarProgresoJugador(muñeco, palabraActualizada);
             }
             else
             {
-                if (muñeco != 1) { muñeco--; }
-                lbInstruccionRetador.Content = "PENALIZADO, Si existe "+letra;
-                ColocarExtremidadAhorcado(muñeco);
+                if (progresoMuñeco != 1) { progresoMuñeco--; }
+                lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
+                ColocarExtremidadAhorcado(progresoMuñeco);
             }
         }
 
-        private void BtnSalir(object sender, RoutedEventArgs e)
+        private void EnviarProgresoPalabra(String progreso)
         {
-            this.Close();
+
+            //EnviarProgreso(estadoMuñeco, progresoPalabra
         }
 
         private void ColocarExtremidadAhorcado(int numSprite)
@@ -100,9 +110,19 @@ namespace JuegoArcado
             
         }
 
-        private void enviarProgresoPalabra(String progreso)
+        private String ColocarLetrasAPalabra()
         {
+            String palabraActualizada = "";
 
+
+            return palabraActualizada;
+        }
+
+        private void BtnSalir(object sender, RoutedEventArgs e)
+        {
+            BtnCorrecto.IsEnabled = true;
+            BtnIncorrecto.IsEnabled = true;
+            //this.Close();
         }
     }
 }
