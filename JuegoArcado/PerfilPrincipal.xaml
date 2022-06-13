@@ -22,5 +22,9 @@
         <Label Content="Correo Electronico :" HorizontalAlignment="Left" Margin="434,155,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Telefono celular :" HorizontalAlignment="Left" Margin="434,96,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Perfil Principal" HorizontalAlignment="Center" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="28"/>
+        <Label x:Name="lbNombre"  HorizontalAlignment="Left" Margin="270,93,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
+        <Label x:Name="lbFecha" HorizontalAlignment="Left" Margin="270,152,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
+        <Label x:Name="lbCelular" HorizontalAlignment="Left" Margin="637,102,0,0" VerticalAlignment="Top" Width="114" Height="28"/>
+        <Label x:Name="lbCorreo" HorizontalAlignment="Left" Margin="637,159,0,0" VerticalAlignment="Top" Width="114" Height="30"/>
     </Grid>
 </Window>
