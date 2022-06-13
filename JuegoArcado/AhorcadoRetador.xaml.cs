@@ -145,7 +145,7 @@ namespace JuegoArcado
             else
             {             
                 lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
-                if (progresoMuñeco != 1) { progresoMuñeco--; }             
+                if (progresoMuñeco != 1) { progresoMuñeco--; }           
                 validacion = PENALIZACION_RETADOR;
             }
             ActualizarProgreso();
@@ -156,18 +156,14 @@ namespace JuegoArcado
             Boolean existe = false;
             int i = 0;
             int tamanoCadena = cadenaPalabraCompleta.Length;
-            tamanoCadena--;
-            do
+            for(i = 0; i < tamanoCadena; i++)
             {
                 if (cadenaPalabraCompleta[i].Equals(letra))
                 {
                     existe = true;
                 }
-                i++;
-
-            } while (i < tamanoCadena);
+            }
             return existe;
-
         }
 
         private void ActualizarProgreso()
@@ -177,15 +173,6 @@ namespace JuegoArcado
                 ColocarExtremidadAhorcado(progresoMuñeco);
                 lbProgresoPalabra.Content = ColocarLetrasAPalabra();
                 Boolean resultado = conexionServicio.ActualizarProgresoPartidaAsync(guion, validacion, progresoPalabra, idPartida).Result;
-                if (resultado)
-                {
-                    
-
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo conectar con la base de datos", "Error de conexion");
-                }
             }
             else
             {

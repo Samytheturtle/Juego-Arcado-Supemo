@@ -120,7 +120,10 @@ namespace JuegoArcado
                 {
                     ColocarInstruccion("PARTIDA FINALIZADA, HAS GANADO!");
                 }
-                else { ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); }
+                else if(progresoMuñeco == 7)
+                { 
+                    ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); 
+                }
                 
             }
             
