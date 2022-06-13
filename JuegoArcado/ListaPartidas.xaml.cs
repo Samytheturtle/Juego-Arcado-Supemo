@@ -40,9 +40,9 @@ namespace JuegoArcado
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
         {
-            PerfilPrincipal ventanaPerfilPrincial= new PerfilPrincipal(idJugador);
+            PerfilPrincipal ventanaPerfilPrincial= new PerfilPrincipal();
             this.Close();
-            ventanaPerfilPrincial.Show();
+            ventanaPerfilPrincial.ShowDialog();
         }
         public Partida[] actualizarPartidas()
         {

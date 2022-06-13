@@ -46,15 +46,11 @@ namespace JuegoArcado
             InitializeComponent();
             palabraCompleta = "WINDOWS";
             cadenaPalabraCompleta = palabraCompleta.ToCharArray();
-
             progresoPalabra = palabraCompleta;
             cadenaProgresoPalabra = progresoPalabra.ToCharArray();
-
             lbPalabra.Content = palabraCompleta;
             InicializarProgresoPalabra();
-
             timer.Interval = TimeSpan.FromSeconds(5);
-
             timer.Tick += ticker;
             timer.Start();
         }

@@ -56,7 +56,6 @@
     <Resource Include="FondoInicio.jpg" />
     <Resource Include="FondoListaPartidas.jpg" />
     <Resource Include="FondoNuevaPartida.jpg" />
-    <Resource Include="FondoPerfilPrincipal.jpg" />
     <Resource Include="FondoRegistroUsuario.jpg" />
     <Resource Include="FondoWestern.jpg" />
     <Resource Include="TituloJuego.png" />

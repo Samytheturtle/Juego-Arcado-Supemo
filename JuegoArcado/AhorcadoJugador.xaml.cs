@@ -39,9 +39,6 @@ namespace JuegoArcado
             lbProgresoPalabra.Content = progresoPalabra;
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += ticker;
-            timer.Start();
-
-
         }
 
         private void ticker(object? sender, EventArgs e)
@@ -56,9 +53,14 @@ namespace JuegoArcado
                 ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartidaAsync(idPartida).Result;
                 if (progresoPartida != null)
                 {
-                    if (progresoPartida.letra == '-')
+                    if (progresoPartida.progresoPalabra != progresoPalabra) //progresoPartida.letra == '-'
+                    {                      
+                        progresoPalabra = progresoPartida.progresoPalabra;
+                        ActualizarProgresoVentana(progresoPartida.validacion);                      
+                    }
+                    else
                     {
-                        ActualizarProgresoVentana(progresoPartida.validacion, progresoPartida.progresoPalabra);
+                        timer.Stop();
                     }
                 }
                 else
@@ -74,34 +76,6 @@ namespace JuegoArcado
             }
         }
 
-        private void ClickBtnA(object sender, RoutedEventArgs e) { BtnA.Visibility = Visibility.Hidden; EnviarLetra('A'); }
-        private void ClickBtnB(object sender, RoutedEventArgs e) { BtnB.Visibility = Visibility.Hidden; EnviarLetra('B'); }
-        private void ClickBtnC(object sender, RoutedEventArgs e) { BtnC.Visibility = Visibility.Hidden; EnviarLetra('C'); }
-        private void ClickBtnD(object sender, RoutedEventArgs e) { BtnD.Visibility = Visibility.Hidden; EnviarLetra('D'); }
-        private void ClickBtnE(object sender, RoutedEventArgs e) { BtnE.Visibility = Visibility.Hidden; EnviarLetra('E'); }
-        private void ClickBtnF(object sender, RoutedEventArgs e) { BtnF.Visibility = Visibility.Hidden; EnviarLetra('F'); }
-        private void ClickBtnG(object sender, RoutedEventArgs e) { BtnG.Visibility = Visibility.Hidden; EnviarLetra('G'); }
-        private void ClickBtnH(object sender, RoutedEventArgs e) { BtnH.Visibility = Visibility.Hidden; EnviarLetra('H'); }
-        private void ClickBtnI(object sender, RoutedEventArgs e) { BtnI.Visibility = Visibility.Hidden; EnviarLetra('I'); }
-        private void ClickBtnJ(object sender, RoutedEventArgs e) { BtnJ.Visibility = Visibility.Hidden; EnviarLetra('J'); }
-        private void ClickBtnK(object sender, RoutedEventArgs e) { BtnK.Visibility = Visibility.Hidden; EnviarLetra('K'); }
-        private void ClickBtnL(object sender, RoutedEventArgs e) { BtnL.Visibility = Visibility.Hidden; EnviarLetra('L'); }
-        private void ClickBtnM(object sender, RoutedEventArgs e) { BtnM.Visibility = Visibility.Hidden; EnviarLetra('M'); }
-        private void ClickBtnN(object sender, RoutedEventArgs e) { BtnN.Visibility = Visibility.Hidden; EnviarLetra('N'); }
-        private void ClickBtnÑ(object sender, RoutedEventArgs e) { BtnÑ.Visibility = Visibility.Hidden; EnviarLetra('Ñ'); }
-        private void ClickBtnO(object sender, RoutedEventArgs e) { BtnO.Visibility = Visibility.Hidden; EnviarLetra('O'); }
-        private void ClickBtnP(object sender, RoutedEventArgs e) { BtnP.Visibility = Visibility.Hidden; EnviarLetra('P'); }
-        private void ClickBtnQ(object sender, RoutedEventArgs e) { BtnQ.Visibility = Visibility.Hidden; EnviarLetra('Q'); }
-        private void ClickBtnR(object sender, RoutedEventArgs e) { BtnR.Visibility = Visibility.Hidden; EnviarLetra('R'); }
-        private void ClickBtnS(object sender, RoutedEventArgs e) { BtnS.Visibility = Visibility.Hidden; EnviarLetra('S'); }
-        private void ClickBtnT(object sender, RoutedEventArgs e) { BtnT.Visibility = Visibility.Hidden; EnviarLetra('T'); }
-        private void ClickBtnU(object sender, RoutedEventArgs e) { BtnU.Visibility = Visibility.Hidden; EnviarLetra('U'); }
-        private void ClickBtnV(object sender, RoutedEventArgs e) { BtnV.Visibility = Visibility.Hidden; EnviarLetra('V'); }
-        private void ClickBtnW(object sender, RoutedEventArgs e) { BtnW.Visibility = Visibility.Hidden; EnviarLetra('W'); }
-        private void ClickBtnX(object sender, RoutedEventArgs e) { BtnX.Visibility = Visibility.Hidden; EnviarLetra('X'); }
-        private void ClickBtnY(object sender, RoutedEventArgs e) { BtnY.Visibility = Visibility.Hidden; EnviarLetra('Y'); }
-        private void ClickBtnZ(object sender, RoutedEventArgs e) { BtnZ.Visibility = Visibility.Hidden; EnviarLetra('Z'); }
-
         private void EnviarLetra(char letra)
         {
             if (conexionServicio != null)
@@ -112,6 +86,7 @@ namespace JuegoArcado
                 {
                     HabilitarBotonesLetras(false);
                     ColocarInstruccion("Esperando al Retador...");
+                    timer.Start();
                 }
                 else
                 {
@@ -125,7 +100,7 @@ namespace JuegoArcado
             
         }
 
-        public void ActualizarProgresoVentana(int progresoMuñ, String progreso)
+        public void ActualizarProgresoVentana(int progresoMuñ)
         {
             if (progresoMuñ == 0) { progresoMuñeco++; }
             if (progresoMuñ == 2) {
@@ -136,7 +111,7 @@ namespace JuegoArcado
             }
 
             ColocarExtremidadAhorcado();
-            lbProgresoPalabra.Content = progreso;
+            lbProgresoPalabra.Content = progresoPalabra;
             HabilitarBotonesLetras(true);
             ColocarInstruccion("Selecciona una letra");
         }
@@ -186,6 +161,34 @@ namespace JuegoArcado
             BtnY.IsEnabled = accion;
             BtnZ.IsEnabled = accion;
         }
+
+        private void ClickBtnA(object sender, RoutedEventArgs e) { BtnA.Visibility = Visibility.Hidden; EnviarLetra('A'); }
+        private void ClickBtnB(object sender, RoutedEventArgs e) { BtnB.Visibility = Visibility.Hidden; EnviarLetra('B'); }
+        private void ClickBtnC(object sender, RoutedEventArgs e) { BtnC.Visibility = Visibility.Hidden; EnviarLetra('C'); }
+        private void ClickBtnD(object sender, RoutedEventArgs e) { BtnD.Visibility = Visibility.Hidden; EnviarLetra('D'); }
+        private void ClickBtnE(object sender, RoutedEventArgs e) { BtnE.Visibility = Visibility.Hidden; EnviarLetra('E'); }
+        private void ClickBtnF(object sender, RoutedEventArgs e) { BtnF.Visibility = Visibility.Hidden; EnviarLetra('F'); }
+        private void ClickBtnG(object sender, RoutedEventArgs e) { BtnG.Visibility = Visibility.Hidden; EnviarLetra('G'); }
+        private void ClickBtnH(object sender, RoutedEventArgs e) { BtnH.Visibility = Visibility.Hidden; EnviarLetra('H'); }
+        private void ClickBtnI(object sender, RoutedEventArgs e) { BtnI.Visibility = Visibility.Hidden; EnviarLetra('I'); }
+        private void ClickBtnJ(object sender, RoutedEventArgs e) { BtnJ.Visibility = Visibility.Hidden; EnviarLetra('J'); }
+        private void ClickBtnK(object sender, RoutedEventArgs e) { BtnK.Visibility = Visibility.Hidden; EnviarLetra('K'); }
+        private void ClickBtnL(object sender, RoutedEventArgs e) { BtnL.Visibility = Visibility.Hidden; EnviarLetra('L'); }
+        private void ClickBtnM(object sender, RoutedEventArgs e) { BtnM.Visibility = Visibility.Hidden; EnviarLetra('M'); }
+        private void ClickBtnN(object sender, RoutedEventArgs e) { BtnN.Visibility = Visibility.Hidden; EnviarLetra('N'); }
+        private void ClickBtnÑ(object sender, RoutedEventArgs e) { BtnÑ.Visibility = Visibility.Hidden; EnviarLetra('Ñ'); }
+        private void ClickBtnO(object sender, RoutedEventArgs e) { BtnO.Visibility = Visibility.Hidden; EnviarLetra('O'); }
+        private void ClickBtnP(object sender, RoutedEventArgs e) { BtnP.Visibility = Visibility.Hidden; EnviarLetra('P'); }
+        private void ClickBtnQ(object sender, RoutedEventArgs e) { BtnQ.Visibility = Visibility.Hidden; EnviarLetra('Q'); }
+        private void ClickBtnR(object sender, RoutedEventArgs e) { BtnR.Visibility = Visibility.Hidden; EnviarLetra('R'); }
+        private void ClickBtnS(object sender, RoutedEventArgs e) { BtnS.Visibility = Visibility.Hidden; EnviarLetra('S'); }
+        private void ClickBtnT(object sender, RoutedEventArgs e) { BtnT.Visibility = Visibility.Hidden; EnviarLetra('T'); }
+        private void ClickBtnU(object sender, RoutedEventArgs e) { BtnU.Visibility = Visibility.Hidden; EnviarLetra('U'); }
+        private void ClickBtnV(object sender, RoutedEventArgs e) { BtnV.Visibility = Visibility.Hidden; EnviarLetra('V'); }
+        private void ClickBtnW(object sender, RoutedEventArgs e) { BtnW.Visibility = Visibility.Hidden; EnviarLetra('W'); }
+        private void ClickBtnX(object sender, RoutedEventArgs e) { BtnX.Visibility = Visibility.Hidden; EnviarLetra('X'); }
+        private void ClickBtnY(object sender, RoutedEventArgs e) { BtnY.Visibility = Visibility.Hidden; EnviarLetra('Y'); }
+        private void ClickBtnZ(object sender, RoutedEventArgs e) { BtnZ.Visibility = Visibility.Hidden; EnviarLetra('Z'); }
 
         private void ColocarInstruccion(String instruccion)
         {
