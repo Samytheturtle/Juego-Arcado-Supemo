@@ -39,6 +39,7 @@ namespace JuegoArcado
 
         DispatcherTimer timer = new DispatcherTimer();
 
+
         public AhorcadoRetador()
         {
             
@@ -53,6 +54,7 @@ namespace JuegoArcado
             InicializarProgresoPalabra();
 
             timer.Interval = TimeSpan.FromSeconds(5);
+
             timer.Tick += ticker;
             timer.Start();
         }
