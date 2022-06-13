@@ -7,9 +7,8 @@
       "System.Array",
       "System.Collections.Generic.Dictionary`2"
     ],
-    "messageContract": true,
     "namespaceMappings": [
-      "*, ServicioAhorcado"
+      "*, ServicioAhorcadoSupremo"
     ],
     "targetFramework": "net6.0",
     "typeReuseMode": "All"

@@ -73,6 +73,7 @@ namespace JuegoArcado
         }
         private Boolean validarCamposVacios()
         {
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             Boolean camposVacios = false;
             if (CajaDTextoCorreo.Text == "")
             {
