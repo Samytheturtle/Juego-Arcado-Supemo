@@ -174,12 +174,13 @@ namespace JuegoArcado
         {
             if (conexionServicio != null)
             {
-
+                ColocarExtremidadAhorcado(progresoMuñeco);
+                lbProgresoPalabra.Content = ColocarLetrasAPalabra();
                 Boolean resultado = conexionServicio.ActualizarProgresoPartidaAsync(guion, validacion, progresoPalabra, idPartida).Result;
                 if (resultado)
                 {
-                    ColocarExtremidadAhorcado(progresoMuñeco);
-                    lbProgresoPalabra.Content = ColocarLetrasAPalabra();
+                    
+
                 }
                 else
                 {

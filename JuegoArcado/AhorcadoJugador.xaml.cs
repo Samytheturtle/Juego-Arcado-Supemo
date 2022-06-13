@@ -53,13 +53,10 @@ namespace JuegoArcado
                 ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartidaAsync(idPartida).Result;
                 if (progresoPartida != null)
                 {
-                    if (progresoPartida.progresoPalabra != progresoPalabra) //progresoPartida.letra == '-'
+                    if (progresoPartida.letra == '-')
                     {                      
                         progresoPalabra = progresoPartida.progresoPalabra;
-                        ActualizarProgresoVentana(progresoPartida.validacion);                      
-                    }
-                    else
-                    {
+                        ActualizarProgresoVentana(progresoPartida.validacion);
                         timer.Stop();
                     }
                 }
