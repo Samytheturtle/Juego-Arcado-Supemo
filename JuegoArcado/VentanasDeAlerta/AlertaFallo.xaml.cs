@@ -31,9 +31,7 @@ namespace JuegoArcado.VentanasDeAlerta
             switch (ventanaApertura)
             {
                 case 1:
-                    RegistroUsuario ventanaRegistroUsuario = new RegistroUsuario();
                     this.Close();
-                    ventanaRegistroUsuario.ShowDialog();
 
                     break;
                 case 2:

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JuegoArcado.VentanasDeAlerta;
+using ServicioAhorcadoSupremo;
 
 namespace JuegoArcado
 {
@@ -59,7 +60,7 @@ namespace JuegoArcado
 
         private void botonClicRegistrarse(object sender, RoutedEventArgs e)
         {
-            if (!validarCamposVacios())
+            if (!validarCamposVacios() && validarCorreo()==0)
             {
                 AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
                 ventanaAlertaExitoso.ventanaApertura = 2;
@@ -67,6 +68,13 @@ namespace JuegoArcado
                 ventanaAlertaExitoso.LabeltextoAlerta.Content = "Jugador registrado al sistema exitosamente :D";
                 this.Close();
                 ventanaAlertaExitoso.ShowDialog();
+            }
+            else if(validarCorreo()>0)
+            {
+                AlertaFallo alertaFalloRegistro = new AlertaFallo();
+                alertaFalloRegistro.ventanaApertura = 1;
+                alertaFalloRegistro.labelInforAlerta.Content = "El correo que usted ingreso ya tiene una cuenta registrada";
+                alertaFalloRegistro.labelTipoFallo.Content = "ERROR EN REGISTRO";
             }
         }
         private Boolean validarCamposVacios()
@@ -98,11 +106,26 @@ namespace JuegoArcado
                 camposVacios = true;
             }
             if (calendarioInformacion.SelectedDate==null)
-            {
+            { 
+                //calendarioInformacion.SelectedDate = DateTime.Now;
                 labelCamposInvalidosCalendario.Content = "Por favor, introduzca una fecha";
                 camposVacios = true;
             }
             return camposVacios;
+        }
+        private int validarCorreo()
+        {
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient validarJugadores = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
+            int idJugador = 0;
+            validarJugadores.recuperarJugadorAsync()
+            
+            List<Jugador> ListaDeJugadores = new List<Jugador> ();
+            ListaDeJugadores.Add(validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result);
+            
+            ListaDeJugadores.
+            // resultado = serviceAhorcadoClient.VerificarJugadorAsync(cajaDTextoCorreo.Text, cajaDTextoContrasenia.Text).Result;
+
+            return resultado;
         }
     }
 }

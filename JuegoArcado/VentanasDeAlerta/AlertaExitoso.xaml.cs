@@ -27,6 +27,7 @@ namespace JuegoArcado.VentanasDeAlerta
         
          VantanaApertura==Abrir la ventana */
         public int ventanaApertura;
+        public int idJugador;
         public AlertaExitoso()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace JuegoArcado.VentanasDeAlerta
             {
                 case 1:
                     ListaPartidas ventanaListaPartidas = new ListaPartidas();
+                    ventanaListaPartidas.idJugador=idJugador;
                     this.Close();
                     ventanaListaPartidas.ShowDialog();
                     

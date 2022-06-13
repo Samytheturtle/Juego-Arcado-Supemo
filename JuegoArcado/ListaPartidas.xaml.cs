@@ -19,6 +19,7 @@ namespace JuegoArcado
     /// </summary>
     public partial class ListaPartidas : Window
     {
+        public int idJugador;
         public ListaPartidas()
         {
             InitializeComponent();

@@ -52,33 +52,38 @@ namespace JuegoArcado
         private void BotonIniciarSesion(object sender, RoutedEventArgs e)
         {
             Boolean camposVacios = validarCamposVacios();
-            validarCorreoContrasenia();
-            if (!camposVacios)
+
+            int resultado = validarCorreo();
+            if (!camposVacios && resultado > 0)
             {
                 AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
                 ventanaAlertaExitoso.ventanaApertura = 1;
                 ventanaAlertaExitoso.labeltipoExito.Content = "INICIO DE SESION EXITOSO";
                 ventanaAlertaExitoso.LabeltextoAlerta.Content = "Jugador ingreso al sistema exitosamente :D";
+                ventanaAlertaExitoso.idJugador = resultado;
                 this.Close();
                 ventanaAlertaExitoso.ShowDialog();
+            }
+            else if(resultado==0)
+            {
+                labelCamposInvalidosContrasenia.Content = "Correo o Contraseña no valido";  
             }
         }
 
         private void BotonClicRegistrarse(object sender, RoutedEventArgs e)
         {
-            
-            RegistroUsuario ventanaRegistroUsuario= new RegistroUsuario();
+
+            RegistroUsuario ventanaRegistroUsuario = new RegistroUsuario();
             this.Close();
             ventanaRegistroUsuario.ShowDialog();
         }
         private Boolean validarCamposVacios()
         {
-            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             Boolean camposVacios = false;
             if (CajaDTextoCorreo.Text == "")
             {
-                labelCamposInvalidosCorreo.Content="Por favor, introduzca un correo";
-                camposVacios=true;
+                labelCamposInvalidosCorreo.Content = "Por favor, introduzca un correo";
+                camposVacios = true;
             }
             if (CajaDTextoContrasenia.Text == "")
             {
@@ -87,9 +92,11 @@ namespace JuegoArcado
             }
             return camposVacios;
         }
-        private void validarCorreoContrasenia()
+        private int validarCorreo()
         {
-
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
+            int resultado = serviceAhorcadoClient.VerificarJugadorAsync(CajaDTextoCorreo.Text, CajaDTextoContrasenia.Text).Result;
+            return resultado;
         }
     }
 }
