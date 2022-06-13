@@ -30,6 +30,7 @@ namespace JuegoArcado
             InitializeComponent();
             this.idJugador = idJugador;
             MostrarDatosJugador();
+            MostrarPartidasGanadas();
         }
 
         public void MostrarDatosJugador()
@@ -45,7 +46,10 @@ namespace JuegoArcado
 
         public void MostrarPartidasGanadas()
         {
-
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServiceAhorcadoClient();
+            PartidaGanada[] partidaGanadas;
+            partidaGanadas = serviceAhorcadoClient.RecuperarPartidasJugadorAsync(idJugador.ToString()).Result;
+            dgPartidas.ItemsSource = partidaGanadas;
         }
     }
 }
