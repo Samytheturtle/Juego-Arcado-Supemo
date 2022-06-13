@@ -116,16 +116,18 @@ namespace JuegoArcado
         private int validarCorreo()
         {
             ServicioAhorcadoSupremo.ServiceAhorcadoClient validarJugadores = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
-            int idJugador = 0;
-            validarJugadores.recuperarJugadorAsync()
+            int idJugador = 1;
+            List<Jugador> ListaDeJugadores = new List<Jugador>();
+
+            while (validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result != null)
+            {
+                ListaDeJugadores.Add(validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result);
+            }
             
-            List<Jugador> ListaDeJugadores = new List<Jugador> ();
-            ListaDeJugadores.Add(validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result);
-            
-            ListaDeJugadores.
+            //ListaDeJugadores.
             // resultado = serviceAhorcadoClient.VerificarJugadorAsync(cajaDTextoCorreo.Text, cajaDTextoContrasenia.Text).Result;
 
-            return resultado;
+            return idJugador;
         }
     }
 }
