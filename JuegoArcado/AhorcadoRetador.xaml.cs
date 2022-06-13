@@ -13,12 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Media;
+using ServicioAhorcadoSupremo;
+using System.Windows.Threading;
 
 namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
-        public int idPartida;
+        public int idPartida = 1;
         public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
 
@@ -33,6 +35,9 @@ namespace JuegoArcado
         public static int PALABRA_INCORRECTA = 0;
         public static int PALABRA_CORRECTA = 1;
         public static int PENALIZACION_RETADOR = 2;
+        ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
+
+        DispatcherTimer timer = new DispatcherTimer();
 
 
         public AhorcadoRetador()
@@ -47,7 +52,43 @@ namespace JuegoArcado
 
             lbPalabra.Content = palabraCompleta;
             InicializarProgresoPalabra();
-            
+            timer.Interval = new TimeSpan(0, 0, 0, 5000);
+            EjecutarTimer();
+        }
+
+        private void EjecutarTimer()
+        {
+            timer.Tick += (a, b) =>
+            {
+                ComprobarSiHayNuevaLetra();
+            };
+            timer.Start();
+        }
+
+        private void ComprobarSiHayNuevaLetra()
+        {
+            if(conexionServicio != null)
+            {
+                /*Partida progresoPartida = await conexionServicio.RecuperarProgresoPartida(idPartida);
+                if(progresoPartida != null)
+                {
+                    if(letra != progresoPartida.letra)
+                    {
+                        RecibirLetra(progresoPartida.letra);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo comprobar la letra del jugador", "Error de Conexión");
+                    timer.Stop();
+                }*/
+            }
+            else
+            {
+                MessageBox.Show("Por el momento no se puede enviar la solicitud", "Error de Solicitud");
+                timer.Stop();
+            }
+
         }
 
         private void InicializarDatos(String nombreJugador, String palabra)
@@ -90,7 +131,6 @@ namespace JuegoArcado
             {
                 lbInstruccionRetador.Content = "PENALIZADO, "+palabraCompleta+" No contiene la letra " + letra;
                 if (progresoMuñeco != 1) { progresoMuñeco--; }
-                ColocarExtremidadAhorcado(progresoMuñeco);
                 validacion = PENALIZACION_RETADOR;
             }
             ActualizarProgreso();
@@ -105,14 +145,12 @@ namespace JuegoArcado
             {
                 lbInstruccionRetador.Content = "Extremidad Colocada, Esperando al Jugador...";
                 progresoMuñeco++;
-                ColocarExtremidadAhorcado(progresoMuñeco);
                 validacion = PALABRA_INCORRECTA;
             }
             else
             {             
                 lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
-                if (progresoMuñeco != 1) { progresoMuñeco--; }
-                ColocarExtremidadAhorcado(progresoMuñeco);
+                if (progresoMuñeco != 1) { progresoMuñeco--; }             
                 validacion = PENALIZACION_RETADOR;
             }
             ActualizarProgreso();
@@ -137,19 +175,34 @@ namespace JuegoArcado
 
         }
 
+        private async void ActualizarProgreso()
+        {
+            if (conexionServicio != null)
+            {
+                Boolean resultado = await conexionServicio.ActualizarProgresoPartidaAsync('-', validacion, idPartida);
+                if (resultado)
+                {
+                    ColocarExtremidadAhorcado(progresoMuñeco);
+                    lbProgresoPalabra.Content = ColocarLetrasAPalabra();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo conectar con la base de datos", "Error de conexion");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo actualizar el progreso.","Error en la peticion");
+            }
+        }
+
         private void ColocarExtremidadAhorcado(int numSprite)
         {
             BitmapImage sprite = new BitmapImage();
             sprite.BeginInit();
-            sprite.UriSource = new Uri("/AhorcadoSprite"+numSprite+".png", UriKind.Relative);
+            sprite.UriSource = new Uri("/AhorcadoSprite" + numSprite + ".png", UriKind.Relative);
             sprite.EndInit();
             SpriteAhorcado.Source = sprite;
-        }
-
-        private void ActualizarProgreso()
-        {
-            lbProgresoPalabra.Content = ColocarLetrasAPalabra();
-            //ActualizarProgresoPartida('',validacion,idPartida)
         }
 
 

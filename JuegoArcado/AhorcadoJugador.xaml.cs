@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using ServicioAhorcadoSupremo;
 
 namespace JuegoArcado
 {
@@ -19,9 +21,14 @@ namespace JuegoArcado
     /// </summary>
     public partial class AhorcadoJugador : Window
     {
+        public int idPartida = 1;
         public String nombreRetador = "";
         public String descripcionPalabra = "";
         public String progresoPalabra = "A H O R C A D O U W U";
+
+        public ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
+        DispatcherTimer timer = new DispatcherTimer();
+
 
         public AhorcadoJugador()
         {
@@ -29,7 +36,43 @@ namespace JuegoArcado
             lbNombreRetador.Content = nombreRetador;
             lbDescripcionPalabra.Content = descripcionPalabra;
             lbProgresoPalabra.Content = progresoPalabra;
+            timer.Interval = new TimeSpan(0, 0, 0, 5000);
+            EjecutarTimer();
 
+        }
+
+        private void EjecutarTimer()
+        {
+            timer.Tick += (a, b) =>
+            {
+                ComprobarCambios();
+            };
+            timer.Start();
+        }
+
+        private void ComprobarCambios()
+        {
+            if (conexionServicio != null)
+            {
+                /*Partida progresoPartida = await conexionServicio.RecuperarProgresoPartida(idPartida);
+                if (progresoPartida != null)
+                {
+                    if (progresoPartida.letra == '-')
+                    {
+                        ActualizarProgresoVentana
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo comprobar la letra del jugador", "Error de Conexión");
+                    timer.Stop();
+                }*/
+            }
+            else
+            {
+                MessageBox.Show("Por el momento no se puede enviar la solicitud", "Error de Solicitud");
+                timer.Stop();
+            }
         }
 
         private void ClickBtnA(object sender, RoutedEventArgs e) { BtnA.Visibility = Visibility.Hidden; EnviarLetra('A'); }
@@ -60,11 +103,27 @@ namespace JuegoArcado
         private void ClickBtnY(object sender, RoutedEventArgs e) { BtnY.Visibility = Visibility.Hidden; EnviarLetra('Y'); }
         private void ClickBtnZ(object sender, RoutedEventArgs e) { BtnZ.Visibility = Visibility.Hidden; EnviarLetra('Z'); }
 
-        private void EnviarLetra(char letra)
+        private async void EnviarLetra(char letra)
         {
-            HabilitarBotonesLetras(false);
-            ColocarInstruccion("Esperando al Retador...");
-            //ActualizarProgresoPartida(letra, "", idPartida);
+            if (conexionServicio != null)
+            {
+                Boolean resultado = await conexionServicio.ActualizarProgresoPartidaAsync(letra, 0, idPartida);
+                if (resultado)
+                {
+                    HabilitarBotonesLetras(false);
+                    ColocarInstruccion("Esperando al Retador...");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar la partida", "Error de conexión");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo enviar la letra", "Error en la petición");
+            }
+
+            
         }
 
         public void ActualizarProgresoVentana(int numSprite, String progreso)
@@ -89,6 +148,7 @@ namespace JuegoArcado
         {
             //Simulación de entrada de datos (Cuando el Retador confirma)
             //this.Close();
+            HabilitarBotonesLetras(true);
         }
 
         private void HabilitarBotonesLetras(Boolean accion)

@@ -14,9 +14,14 @@ namespace ServicioArcado
     // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione ServiceAhorcado.svc o ServiceAhorcado.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class ServiceAhorcado : IServiceAhorcado
     {
-        public Boolean ActualizarProgresoPartida(char letra, int verificacion, int idPartida)
+        Boolean IServiceAhorcado.ActualizarProgresoPartida(Char letra, int verificacion, String progresoPalabra, int idPartida)
         {
-            Boolean respuesta = PartidaDAO.ActualizarProgresoPartida(letra, verificacion, idPartida);
+            return ActualizarProgresoPartidaDAO(letra, verificacion, progresoPalabra, idPartida);
+        }
+
+        public Boolean ActualizarProgresoPartidaDAO(Char letra, int verificacion, String progresoPalabra, int idPartida)
+        {
+            Boolean respuesta = PartidaDAO.ActualizarProgresoPartida(letra, verificacion, progresoPalabra, idPartida);
             return respuesta;
         }
 
@@ -97,6 +102,11 @@ namespace ServicioArcado
         public bool ActualizarEstadoPartida(int estado, int idPartida)
         {
             return PartidaDAO.ActualizarEstadoPartida(estado, idPartida);
+        }
+
+        public ProgresoPartida RecuperarProgresoPartida(int idPartida)
+        {
+            return PartidaDAO.RecuperarProgresoPartida(idPartida);
         }
     }
 }
