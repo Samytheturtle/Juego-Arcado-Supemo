@@ -27,7 +27,7 @@ namespace JuegoArcado
         public String progresoPalabra = "";
         public Char[] cadenaProgresoPalabra;
 
-        public Char letra = ' ';
+        public Char letra = 'A';
         public int progresoMuñeco = 2;
         public char guion = '-';
         public int validacion;
@@ -52,36 +52,40 @@ namespace JuegoArcado
 
             lbPalabra.Content = palabraCompleta;
             InicializarProgresoPalabra();
+            
             timer.Interval = new TimeSpan(0, 0, 0, 5000);
-            EjecutarTimer();
-        }
-
-        private void EjecutarTimer()
-        {
             timer.Tick += (a, b) =>
             {
-                ComprobarSiHayNuevaLetra();
+                //RecibirLetra('Z');
+                //ComprobarSiHayNuevaLetra();
+                MessageBox.Show("PRUEBA TIMER");
             };
             timer.Start();
+            //EjecutarTimer();
         }
+
+        /*private void EjecutarTimer()
+        {
+            
+        }*/
 
         private void ComprobarSiHayNuevaLetra()
         {
             if(conexionServicio != null)
             {
-                /*Partida progresoPartida = await conexionServicio.RecuperarProgresoPartida(idPartida);
-                if(progresoPartida != null)
+                //ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartida(idPartida);
+                if(true)
                 {
-                    if(letra != progresoPartida.letra)
+                    if(letra != 'Z')
                     {
-                        RecibirLetra(progresoPartida.letra);
+                        RecibirLetra('Z');
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se pudo comprobar la letra del jugador", "Error de Conexión");
                     timer.Stop();
-                }*/
+                }
             }
             else
             {
