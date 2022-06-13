@@ -28,7 +28,7 @@ namespace JuegoArcado
         public Char[] cadenaProgresoPalabra;
 
         public Char letra = 'A';
-        public int progresoMuñeco = 2;
+        public int progresoMuñeco = 1;
         public char guion = '-';
         public int validacion;
 
@@ -52,33 +52,29 @@ namespace JuegoArcado
 
             lbPalabra.Content = palabraCompleta;
             InicializarProgresoPalabra();
-            
-            timer.Interval = new TimeSpan(0, 0, 0, 5000);
-            timer.Tick += (a, b) =>
-            {
-                //RecibirLetra('Z');
-                //ComprobarSiHayNuevaLetra();
-                MessageBox.Show("PRUEBA TIMER");
-            };
+
+            timer.Interval = TimeSpan.FromSeconds(5);
+
+            timer.Tick += ticker;
             timer.Start();
-            //EjecutarTimer();
         }
 
-        /*private void EjecutarTimer()
+        private void ticker(object? sender, EventArgs e)
         {
-            
-        }*/
+            ComprobarSiHayNuevaLetra();
+        }
 
         private void ComprobarSiHayNuevaLetra()
         {
             if(conexionServicio != null)
             {
-                //ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartida(idPartida);
-                if(true)
+                ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartidaAsync(idPartida).Result;
+                if(progresoPartida != null)
                 {
-                    if(letra != 'Z')
+                    Char letranueva = progresoPartida.letra;
+                    if(letra != letranueva && letranueva != guion)
                     {
-                        RecibirLetra('Z');
+                        RecibirLetra(letranueva);
                     }
                 }
                 else
@@ -92,7 +88,6 @@ namespace JuegoArcado
                 MessageBox.Show("Por el momento no se puede enviar la solicitud", "Error de Solicitud");
                 timer.Stop();
             }
-
         }
 
         private void InicializarDatos(String nombreJugador, String palabra)
@@ -179,11 +174,12 @@ namespace JuegoArcado
 
         }
 
-        private async void ActualizarProgreso()
+        private void ActualizarProgreso()
         {
             if (conexionServicio != null)
             {
-                Boolean resultado = await conexionServicio.ActualizarProgresoPartidaAsync('-', validacion, idPartida);
+
+                Boolean resultado = conexionServicio.ActualizarProgresoPartidaAsync(guion, validacion, progresoPalabra, idPartida).Result;
                 if (resultado)
                 {
                     ColocarExtremidadAhorcado(progresoMuñeco);
@@ -228,7 +224,7 @@ namespace JuegoArcado
 
         private void BtnSalir(object sender, RoutedEventArgs e)
         {
-            RecibirLetra('H');
+            this.Close();
         }
     }
 }

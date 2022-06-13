@@ -24,7 +24,7 @@ namespace JuegoArcado
         public int idPartida = 1;
         public String nombreRetador = "";
         public String descripcionPalabra = "";
-        public String progresoPalabra = "A H O R C A D O U W U";
+        public String progresoPalabra = "";
 
         public ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
         DispatcherTimer timer = new DispatcherTimer();
@@ -54,19 +54,19 @@ namespace JuegoArcado
         {
             if (conexionServicio != null)
             {
-                /*Partida progresoPartida = await conexionServicio.RecuperarProgresoPartida(idPartida);
+                ProgresoPartida progresoPartida = conexionServicio.RecuperarProgresoPartidaAsync(idPartida).Result;
                 if (progresoPartida != null)
                 {
                     if (progresoPartida.letra == '-')
                     {
-                        ActualizarProgresoVentana
+                        ActualizarProgresoVentana(progresoPartida.validacion, progresoPartida.progresoPalabra);
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se pudo comprobar la letra del jugador", "Error de Conexión");
                     timer.Stop();
-                }*/
+                }
             }
             else
             {
@@ -103,11 +103,12 @@ namespace JuegoArcado
         private void ClickBtnY(object sender, RoutedEventArgs e) { BtnY.Visibility = Visibility.Hidden; EnviarLetra('Y'); }
         private void ClickBtnZ(object sender, RoutedEventArgs e) { BtnZ.Visibility = Visibility.Hidden; EnviarLetra('Z'); }
 
-        private async void EnviarLetra(char letra)
+        private void EnviarLetra(char letra)
         {
             if (conexionServicio != null)
             {
-                Boolean resultado = await conexionServicio.ActualizarProgresoPartidaAsync(letra, 0, idPartida);
+
+                Boolean resultado = conexionServicio.ActualizarProgresoPartidaAsync(letra, 0, "", idPartida).Result;
                 if (resultado)
                 {
                     HabilitarBotonesLetras(false);
