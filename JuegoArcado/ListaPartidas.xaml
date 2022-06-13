@@ -12,10 +12,10 @@
         </Grid.Background>
         <DataGrid x:Name="dgPartidasJugadores" Margin="338,28,20,53" AutoGenerateColumns="False" IsReadOnly="True" Background="#FFF0F0F0" Opacity="0.75">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Sheriff★" Width="*" Binding="{Binding Nombre}"/>
-                <DataGridTextColumn Header="Correo" Width="*" Binding="{Binding Apellidos}"/>
-                <DataGridTextColumn Header="Fecha Creacion" Width="*" Binding="{Binding Matricula}"/>
-                <DataGridTextColumn Header="Dificultad" Width="*" Binding="{Binding Edad}"/>
+                <DataGridTextColumn Header="Sheriff★" Width="*" Binding="{Binding idRetador}"/>
+                <DataGridTextColumn Header="Correo" Width="*" Binding="{Binding idPalabra}"/>
+                <DataGridTextColumn Header="Fecha Creacion" Width="*" Binding="{Binding fecha}"/>
+                <DataGridTextColumn Header="Dificultad" Width="*" Binding="{Binding IdPartida}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Lista del Sheriff" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" FontSize="24" Width="230"/>
