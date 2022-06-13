@@ -26,6 +26,7 @@ namespace JuegoArcado
         public String descripcionPalabra = "";
         public String progresoPalabra = "";
         public int progresoMuñeco = 1;
+        public char guion = '-';
 
         public ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
         DispatcherTimer timer = new DispatcherTimer();
@@ -106,11 +107,23 @@ namespace JuegoArcado
                     progresoMuñeco--;
                 } 
             }
-
             ColocarExtremidadAhorcado();
             lbProgresoPalabra.Content = progresoPalabra;
-            HabilitarBotonesLetras(true);
-            ColocarInstruccion("Selecciona una letra");
+            if (progresoPalabra.Contains(guion) || progresoMuñeco != 7)
+            {
+                HabilitarBotonesLetras(true);
+                ColocarInstruccion("Selecciona una letra");
+            }
+            else
+            {
+                if (!progresoPalabra.Contains(guion))
+                {
+                    ColocarInstruccion("PARTIDA FINALIZADA, HAS GANADO!");
+                }
+                else { ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); }
+                
+            }
+            
         }
 
         private void ColocarExtremidadAhorcado()
