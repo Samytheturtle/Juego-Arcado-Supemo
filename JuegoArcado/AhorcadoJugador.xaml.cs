@@ -25,6 +25,7 @@ namespace JuegoArcado
         public String nombreRetador = "";
         public String descripcionPalabra = "";
         public String progresoPalabra = "";
+        public int progresoMuñeco = 1;
 
         public ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
         DispatcherTimer timer = new DispatcherTimer();
@@ -36,18 +37,16 @@ namespace JuegoArcado
             lbNombreRetador.Content = nombreRetador;
             lbDescripcionPalabra.Content = descripcionPalabra;
             lbProgresoPalabra.Content = progresoPalabra;
-            timer.Interval = new TimeSpan(0, 0, 0, 5000);
-            EjecutarTimer();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += ticker;
+            timer.Start();
+
 
         }
 
-        private void EjecutarTimer()
+        private void ticker(object? sender, EventArgs e)
         {
-            timer.Tick += (a, b) =>
-            {
-                ComprobarCambios();
-            };
-            timer.Start();
+            ComprobarCambios();
         }
 
         private void ComprobarCambios()
@@ -123,23 +122,30 @@ namespace JuegoArcado
             {
                 MessageBox.Show("No se pudo enviar la letra", "Error en la petición");
             }
-
             
         }
 
-        public void ActualizarProgresoVentana(int numSprite, String progreso)
+        public void ActualizarProgresoVentana(int progresoMuñ, String progreso)
         {
-            ColocarExtremidadAhorcado(numSprite);
+            if (progresoMuñ == 0) { progresoMuñeco++; }
+            if (progresoMuñ == 2) {
+                if (progresoMuñeco != 1)
+                {
+                    progresoMuñeco--;
+                } 
+            }
+
+            ColocarExtremidadAhorcado();
             lbProgresoPalabra.Content = progreso;
             HabilitarBotonesLetras(true);
             ColocarInstruccion("Selecciona una letra");
         }
 
-        private void ColocarExtremidadAhorcado(int numSprite)
+        private void ColocarExtremidadAhorcado()
         {
             BitmapImage sprite = new BitmapImage();
             sprite.BeginInit();
-            sprite.UriSource = new Uri("/AhorcadoSprite" + numSprite + ".png", UriKind.Relative);
+            sprite.UriSource = new Uri("/AhorcadoSprite" + progresoMuñeco + ".png", UriKind.Relative);
             sprite.EndInit();
             SpriteAhorcado.Source = sprite;
         }
@@ -147,9 +153,7 @@ namespace JuegoArcado
 
         private void BtnRendirse(object sender, RoutedEventArgs e)
         {
-            //Simulación de entrada de datos (Cuando el Retador confirma)
-            //this.Close();
-            HabilitarBotonesLetras(true);
+            this.Close();
         }
 
         private void HabilitarBotonesLetras(Boolean accion)
