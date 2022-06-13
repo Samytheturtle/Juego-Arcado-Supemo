@@ -60,8 +60,9 @@ namespace JuegoArcado
 
         private void botonClicRegistrarse(object sender, RoutedEventArgs e)
         {
-            if (!validarCamposVacios() && validarCorreo()==0)
+            if (!validarCamposVacios()&& validarCorreo()>0)
             {
+                registrarJugador();
                 AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
                 ventanaAlertaExitoso.ventanaApertura = 2;
                 ventanaAlertaExitoso.labeltipoExito.Content = "REGISTRO EXITOSO";
@@ -69,12 +70,13 @@ namespace JuegoArcado
                 this.Close();
                 ventanaAlertaExitoso.ShowDialog();
             }
-            else if(validarCorreo()>0)
+            else if(validarCorreo()==0)
             {
                 AlertaFallo alertaFalloRegistro = new AlertaFallo();
                 alertaFalloRegistro.ventanaApertura = 1;
                 alertaFalloRegistro.labelInforAlerta.Content = "El correo que usted ingreso ya tiene una cuenta registrada";
                 alertaFalloRegistro.labelTipoFallo.Content = "ERROR EN REGISTRO";
+                alertaFalloRegistro.ShowDialog();
             }
         }
         private Boolean validarCamposVacios()
@@ -117,17 +119,38 @@ namespace JuegoArcado
         {
             ServicioAhorcadoSupremo.ServiceAhorcadoClient validarJugadores = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             int idJugador = 1;
+            int correoValido = 1;
+
             List<Jugador> ListaDeJugadores = new List<Jugador>();
 
             while (validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result != null)
             {
                 ListaDeJugadores.Add(validarJugadores.recuperarJugadorAsync(idJugador.ToString()).Result);
+                idJugador++;
             }
-            
-            //ListaDeJugadores.
-            // resultado = serviceAhorcadoClient.VerificarJugadorAsync(cajaDTextoCorreo.Text, cajaDTextoContrasenia.Text).Result;
+            for (int i = 0; i < ListaDeJugadores.Count; i++)
+            {
+                if (ListaDeJugadores[i].CorreoElectronico == cajaDTextoCorreo.Text)
+                {
+                    correoValido = 0;
+                }
+            }
 
-            return idJugador;
+            return correoValido;
+        }
+        private void registrarJugador()
+        {
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient registrarJugador = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
+            Jugador jugadorNuevo = new Jugador();
+            jugadorNuevo.Nombre = cajaDTextoNombre.Text;
+            jugadorNuevo.Apellidos = cajaDTextoApellidos.Text;
+            jugadorNuevo.FechaNacimiento = calendarioInformacion.SelectedDate.ToString();
+            jugadorNuevo.Celular = cajaDTextoTelfono.Text;
+            jugadorNuevo.CorreoElectronico = cajaDTextoCorreo.Text;
+            jugadorNuevo.Password= cajaDTextoContrasenia.Text;
+            jugadorNuevo.Puntaje= 0;
+
+            registrarJugador.RegistrarJugadorAsync(jugadorNuevo);
         }
     }
 }
