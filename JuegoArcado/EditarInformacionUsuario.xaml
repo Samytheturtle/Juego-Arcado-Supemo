@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoArcado"
         mc:Ignorable="d"
-      Title="Editar Informacion Usuario">
+      Title="Editar Informacion Usuario" Height="430" Width="750">
 
-    <Grid Height="408" Width="771">
+    <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/FondoEditarInformacionUsuario.jpg"/>
         </Grid.Background>
-        <Label Content="Información Personal" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="36" FontFamily="Bernard MT Condensed"/>
-        <Label Content="Nombre :" HorizontalAlignment="Left" Margin="42,83,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFEEF5F5" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Apellidos :" HorizontalAlignment="Left" Margin="37,146,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="516,79,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Numero Telefonico :" HorizontalAlignment="Left" Margin="37,194,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Contraseña :" HorizontalAlignment="Left" Margin="42,254,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Información Personal" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="36" FontFamily="Bernard MT Condensed" Height="53" Width="310"/>
+        <Label Content="Nombre :" HorizontalAlignment="Left" Margin="42,83,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFEEF5F5" FontWeight="Bold" FontSize="18" Height="34" Width="90"/>
+        <Label Content="Apellidos :" HorizontalAlignment="Left" Margin="37,146,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18" Height="34" Width="99"/>
+        <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="516,79,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18" Height="34" Width="195"/>
+        <Label Content="Numero Telefonico :" HorizontalAlignment="Left" Margin="37,194,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18" Height="34" Width="181"/>
+        <Label Content="Contraseña :" HorizontalAlignment="Left" Margin="42,254,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18" Height="34" Width="115"/>
         <Button x:Name="btnGuardar" Content="Guardar Información" HorizontalAlignment="Left" Margin="581,350,0,0" VerticalAlignment="Top" Height="28" Width="132" Click="ActualizarInformacionJugador"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="42,350,0,0" VerticalAlignment="Top" Width="133" Height="28"/>
-        <TextBox x:Name="tbNombre" Margin="245,89,343,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="42,350,0,0" VerticalAlignment="Top" Width="133" Height="28" Click="CancelarActualizacion"/>
+        <TextBox x:Name="tbNombre" Margin="245,89,307,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28"/>
         <TextBox x:Name="tbApellidos" HorizontalAlignment="Left" Margin="245,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
         <TextBox x:Name="tbContrasena" HorizontalAlignment="Left" Margin="245,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
         <TextBox x:Name="tbCelular" HorizontalAlignment="Left" Margin="245,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Height="28"/>
-        <Calendar x:Name="cFechaNacimiento" HorizontalAlignment="Left" Margin="534,0,0,0" VerticalAlignment="Center"/>
+        <Calendar x:Name="cFechaNacimiento" HorizontalAlignment="Left" Margin="534,0,0,0" VerticalAlignment="Center" Height="168" Width="177"/>
 
     </Grid>
 </Window>

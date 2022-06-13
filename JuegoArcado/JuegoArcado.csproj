@@ -52,6 +52,7 @@
     <Resource Include="AhorcadoSprite6.png" />
     <Resource Include="AhorcadoSprite7.png" />
     <Resource Include="FondoAhorcado.jpg" />
+    <Resource Include="FondoEditarInformacionUsuario.jpg" />
     <Resource Include="FondoInicio.jpg" />
     <Resource Include="FondoListaPartidas.jpg" />
     <Resource Include="FondoNuevaPartida.jpg" />

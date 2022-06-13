@@ -56,11 +56,10 @@ namespace JuegoArcado
             int resultado = validarCorreo();
             if (!camposVacios && resultado > 0)
             {
-                AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
+                AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso(resultado);
                 ventanaAlertaExitoso.ventanaApertura = 1;
                 ventanaAlertaExitoso.labeltipoExito.Content = "INICIO DE SESION EXITOSO";
                 ventanaAlertaExitoso.LabeltextoAlerta.Content = "Jugador ingreso al sistema exitosamente :D";
-                ventanaAlertaExitoso.idJugador = resultado;
                 this.Close();
                 ventanaAlertaExitoso.ShowDialog();
             }

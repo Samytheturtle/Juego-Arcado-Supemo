@@ -31,14 +31,21 @@ namespace JuegoArcado.VentanasDeAlerta
         public AlertaExitoso()
         {
             InitializeComponent();
+            
+        }
+        public AlertaExitoso(int idJugador)
+        {
+            InitializeComponent();
+            this.idJugador=idJugador;
+            labeltipoExito.Content = idJugador;
+
         }
         private void BotonClicAceptar(object sender, RoutedEventArgs e)
         {
             switch (ventanaApertura)
             {
                 case 1:
-                    ListaPartidas ventanaListaPartidas = new ListaPartidas();
-                    ventanaListaPartidas.idJugador=idJugador;
+                    ListaPartidas ventanaListaPartidas = new ListaPartidas(idJugador);
                     this.Close();
                     ventanaListaPartidas.ShowDialog();
                     

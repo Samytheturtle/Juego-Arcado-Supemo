@@ -24,6 +24,11 @@ namespace JuegoArcado
         {
             InitializeComponent();
         }
+        public ListaPartidas(int idJugador)
+        {
+            InitializeComponent();
+            this.idJugador = idJugador;
+        }
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
         {
@@ -53,7 +58,9 @@ namespace JuegoArcado
 
         private void BotonModificarPerfil(object sender, RoutedEventArgs e)
         {
-
+            EditarInformacionUsuario editarInformacionUsuario = new EditarInformacionUsuario(idJugador);
+            this.Close();
+            editarInformacionUsuario.Show();
         }
 
         private void BotonSalir(object sender, RoutedEventArgs e)
