@@ -5,26 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoArcado"
         mc:Ignorable="d"
-        Title="PerfilPrincipal" Height="450" Width="800">
+        Title="PerfilPrincipal" Height="450" Width="900">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/FondoPerfilPrincipal.jpg"/>
         </Grid.Background>
-        <Label Content="Puntaje total:" HorizontalAlignment="Left" Margin="592,0,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Puntaje total:" HorizontalAlignment="Left" Margin="610,5,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="20"/>
         <DataGrid x:Name="dgPartidas" AutoGenerateColumns="False" IsReadOnly="True" Margin="51,217,49,28" Opacity="0.75">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Fecha de Partida" Width="*"/>
-                <DataGridTextColumn Header="Jugador Vencido" Width="*"/>
+                <DataGridTextColumn Header="Fecha de Partida" Width="*" Binding="{Binding fechaPartida}"/>
+                <DataGridTextColumn Header="Jugador Vencido" Width="*" Binding="{Binding idRetador}"/> 
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Nombre Completo :" HorizontalAlignment="Left" Margin="51,89,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
-        <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="51,148,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Nombre Completo :" HorizontalAlignment="Left" Margin="21,96,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Correo Electronico :" HorizontalAlignment="Left" Margin="434,155,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Telefono celular :" HorizontalAlignment="Left" Margin="434,96,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Perfil Principal" HorizontalAlignment="Center" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="28"/>
-        <Label x:Name="lbNombre"  HorizontalAlignment="Left" Margin="270,93,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
-        <Label x:Name="lbFecha" HorizontalAlignment="Left" Margin="270,152,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
-        <Label x:Name="lbCelular" HorizontalAlignment="Left" Margin="637,102,0,0" VerticalAlignment="Top" Width="114" Height="28"/>
-        <Label x:Name="lbCorreo" HorizontalAlignment="Left" Margin="637,159,0,0" VerticalAlignment="Top" Width="114" Height="30"/>
+        <Label x:Name="lbNombre"  HorizontalAlignment="Left" Margin="224,93,0,0" VerticalAlignment="Top" Width="192" Height="30" Background="{x:Null}" Foreground="#FFF3EBEB"/>
+        <Label x:Name="lbFecha" HorizontalAlignment="Left" Margin="224,152,0,0" VerticalAlignment="Top" Width="192" Height="30" Foreground="#FFF5EEEE"/>
+        <Label x:Name="lbCelular" HorizontalAlignment="Left" Margin="610,102,0,0" VerticalAlignment="Top" Width="216" Height="28" Foreground="#FFF1EBEB"/>
+        <Label x:Name="lbCorreo" HorizontalAlignment="Left" Margin="615,159,0,0" VerticalAlignment="Top" Width="211" Height="30" Foreground="#FFF7F0F0"/>
+        <Label x:Name="lbPunatje" HorizontalAlignment="Left" Margin="752,14,0,0" VerticalAlignment="Top" Height="28" Width="74" Foreground="#FFF9F2F2"/>
     </Grid>
 </Window>

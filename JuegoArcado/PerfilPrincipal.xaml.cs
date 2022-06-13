@@ -30,6 +30,7 @@ namespace JuegoArcado
             InitializeComponent();
             this.idJugador = idJugador;
             MostrarDatosJugador();
+            MostrarPartidasGanadas();
         }
 
         public void MostrarDatosJugador()
@@ -41,11 +42,16 @@ namespace JuegoArcado
             lbCorreo.Content = jugador.CorreoElectronico;
             lbFecha.Content = jugador.FechaNacimiento;
             lbCelular.Content = jugador.Celular;
+            lbPunatje.Content = jugador.Puntaje;
         }
 
         public void MostrarPartidasGanadas()
         {
-
+            DataGridTextColumn partidasGanadas = new DataGridTextColumn();
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServiceAhorcadoClient();
+            PartidaGanada[] partidaGanadas;
+            partidaGanadas = serviceAhorcadoClient.RecuperarPartidasJugadorAsync(idJugador.ToString()).Result;
+            dgPartidas.Items.Add(partidaGanadas);
         }
     }
 }
