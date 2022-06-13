@@ -18,6 +18,7 @@ namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
+        public int idPartida;
         public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
 
@@ -27,7 +28,12 @@ namespace JuegoArcado
         public Char letra = ' ';
         public int progresoMuñeco = 2;
         public char guion = '-';
- 
+        public int validacion;
+
+        public static int PALABRA_INCORRECTA = 0;
+        public static int PALABRA_CORRECTA = 1;
+        public static int PENALIZACION_RETADOR = 2;
+
 
         public AhorcadoRetador()
         {
@@ -77,16 +83,17 @@ namespace JuegoArcado
             Boolean existe = ComprobarLetra();
             if (existe)
             {
-                ActualizarProgreso();
-                lbInstruccionRetador.Content = "Colocando letras...";                
+                lbInstruccionRetador.Content = "Letras Colocadas, Esperando al Jugador...";
+                validacion = PALABRA_CORRECTA;
             }
             else
             {
-                if (progresoMuñeco != 1) { progresoMuñeco--; }
                 lbInstruccionRetador.Content = "PENALIZADO, "+palabraCompleta+" No contiene la letra " + letra;
+                if (progresoMuñeco != 1) { progresoMuñeco--; }
                 ColocarExtremidadAhorcado(progresoMuñeco);
-                ActualizarProgreso();
+                validacion = PENALIZACION_RETADOR;
             }
+            ActualizarProgreso();
         }
 
         private void ClickBtnIncorrecto(object sender, RoutedEventArgs e)
@@ -96,27 +103,19 @@ namespace JuegoArcado
             Boolean existe = ComprobarLetra();
             if (!existe)
             {
-                lbInstruccionRetador.Content = "Colocando Extremidad...";
+                lbInstruccionRetador.Content = "Extremidad Colocada, Esperando al Jugador...";
                 progresoMuñeco++;
                 ColocarExtremidadAhorcado(progresoMuñeco);
-                //ActualizarProgresoJugador(muñeco, palabraActualizada);
+                validacion = PALABRA_INCORRECTA;
             }
             else
-            {
-                if (progresoMuñeco != 1) { progresoMuñeco--; }
+            {             
                 lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
+                if (progresoMuñeco != 1) { progresoMuñeco--; }
                 ColocarExtremidadAhorcado(progresoMuñeco);
-                ActualizarProgreso();
+                validacion = PENALIZACION_RETADOR;
             }
-        }
-
-        private void ColocarExtremidadAhorcado(int numSprite)
-        {
-            BitmapImage sprite = new BitmapImage();
-            sprite.BeginInit();
-            sprite.UriSource = new Uri("/AhorcadoSprite"+numSprite+".png", UriKind.Relative);
-            sprite.EndInit();
-            SpriteAhorcado.Source = sprite;
+            ActualizarProgreso();
         }
 
         private Boolean ComprobarLetra()
@@ -133,10 +132,26 @@ namespace JuegoArcado
                 }
                 i++;
 
-            } while (i <  tamanoCadena);
+            } while (i < tamanoCadena);
             return existe;
-            
+
         }
+
+        private void ColocarExtremidadAhorcado(int numSprite)
+        {
+            BitmapImage sprite = new BitmapImage();
+            sprite.BeginInit();
+            sprite.UriSource = new Uri("/AhorcadoSprite"+numSprite+".png", UriKind.Relative);
+            sprite.EndInit();
+            SpriteAhorcado.Source = sprite;
+        }
+
+        private void ActualizarProgreso()
+        {
+            lbProgresoPalabra.Content = ColocarLetrasAPalabra();
+            //ActualizarProgresoPartida('',validacion,idPartida)
+        }
+
 
         private String ColocarLetrasAPalabra()
         {
@@ -152,18 +167,11 @@ namespace JuegoArcado
             return progresoPalabra;
         }
 
-        private void ActualizarProgreso()
-        {            
-            lbProgresoPalabra.Content = ColocarLetrasAPalabra();
-            //ActualizarProgresoJugador(progresoMuñeco, progresoPalabra);
-        }
+        
 
         private void BtnSalir(object sender, RoutedEventArgs e)
         {
             RecibirLetra('H');
-            //BtnCorrecto.IsEnabled = true;
-            //BtnIncorrecto.IsEnabled = true;
-            //this.Close();
         }
     }
 }

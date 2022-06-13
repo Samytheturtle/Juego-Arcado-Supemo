@@ -32,7 +32,7 @@ namespace JuegoArcado
 
         }
 
-        private void ClickBtnA(object sender, RoutedEventArgs e) { BtnA.Visibility = Visibility.Hidden; /*DeshabilitarHabilitarBotonesLetras(false);*/ EnviarLetra('A'); }
+        private void ClickBtnA(object sender, RoutedEventArgs e) { BtnA.Visibility = Visibility.Hidden; EnviarLetra('A'); }
         private void ClickBtnB(object sender, RoutedEventArgs e) { BtnB.Visibility = Visibility.Hidden; EnviarLetra('B'); }
         private void ClickBtnC(object sender, RoutedEventArgs e) { BtnC.Visibility = Visibility.Hidden; EnviarLetra('C'); }
         private void ClickBtnD(object sender, RoutedEventArgs e) { BtnD.Visibility = Visibility.Hidden; EnviarLetra('D'); }
@@ -62,21 +62,12 @@ namespace JuegoArcado
 
         private void EnviarLetra(char letra)
         {
-            int conexion = 1;
-            if (conexion == 1)
-            {
-                HabilitarBotonesLetras(false);
-                //MetodoQueMandaLaLetraAlRetador();
-                ColocarInstruccion("Esperando al Retador");
-            }
-            else
-            {
-                HabilitarBotonesLetras(false);
-                ColocarInstruccion("No hay conexión con el servidor");
-            }
+            HabilitarBotonesLetras(false);
+            ColocarInstruccion("Esperando al Retador...");
+            //ActualizarProgresoPartida(letra, "", idPartida);
         }
 
-        public void ActualizarProgreso(int numSprite, String progreso)
+        public void ActualizarProgresoVentana(int numSprite, String progreso)
         {
             ColocarExtremidadAhorcado(numSprite);
             lbProgresoPalabra.Content = progreso;
@@ -97,7 +88,6 @@ namespace JuegoArcado
         private void BtnRendirse(object sender, RoutedEventArgs e)
         {
             //Simulación de entrada de datos (Cuando el Retador confirma)
-            ActualizarProgreso(2, "P R U E B A");
             //this.Close();
         }
 

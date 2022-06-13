@@ -125,6 +125,7 @@
     <Compile Include="Modelo\POCO\Jugador.cs" />
     <Compile Include="Modelo\POCO\Palabra.cs" />
     <Compile Include="Modelo\POCO\Partida.cs" />
+    <Compile Include="Modelo\POCO\PartidaGanada.cs" />
     <Compile Include="ServiceAhorcado.svc.cs">
       <DependentUpon>ServiceAhorcado.svc</DependentUpon>
     </Compile>

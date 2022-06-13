@@ -14,12 +14,43 @@ namespace ServicioArcado
     public interface IServiceAhorcado
     {
         [OperationContract]
+        int VerificarJugador(string correo, string password);
+
+        [OperationContract]
+        string RegistrarJugador(Jugador jugador);
+
+        [OperationContract]
         string ModificarJugador(Jugador editarJugador, string idJugador);
+
         [OperationContract]
         Jugador recuperarJugador(string idJugador);
 
+        [OperationContract]
+        string ActualizarPuntos(int idJugador, int puntosNuevos);
+
+        [OperationContract]
+        Boolean ActualizarProgresoPartida(Char letra, int verificacion, int idPartida);
+
+        [OperationContract]
+        string RegistrarPartida(String fecha, int idRetador, int idPalabra);
+
+        [OperationContract]
+        string RegistrarJugadorEnPartida(int idPartida, int idJugador);
+
+        [OperationContract]
+        List<Partida> RecuperarPartidasDisponibles();
+
+        [OperationContract]
+        List<PartidaGanada> RecuperarPartidasJugador(string idJugador);
+
+        [OperationContract]
+        Categoria RecuperarCategoria(int idCategoria);
+
+        [OperationContract]
+        Palabra RecuperarPalabra(int idPalabra);
+
+        [OperationContract]
+        Boolean ActualizarEstadoPartida(int estado, int idPartida);
+
     }
-
-
-    
 }
