@@ -29,7 +29,7 @@ namespace ServicioArcado
         string ActualizarPuntos(int idJugador, int puntosNuevos);
 
         [OperationContract]
-        Boolean ActualizarProgresoPartida(Char letra, int verificacion, String progresoPalabra, int idPartida);
+        Boolean ActualizarProgresoPartida(char letra, int verificacion, string progresoPalabra, int idPartida);
 
         [OperationContract]
         string RegistrarPartida(String fecha, int idRetador, int idPalabra);

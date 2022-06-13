@@ -157,10 +157,6 @@ namespace ServicioAhorcadoSupremo
         
         private int idRetadorField;
         
-        private char letraField;
-        
-        private int validacionField;
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdPartida
         {
@@ -236,32 +232,6 @@ namespace ServicioAhorcadoSupremo
             set
             {
                 this.idRetadorField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public char letra
-        {
-            get
-            {
-                return this.letraField;
-            }
-            set
-            {
-                this.letraField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int validacion
-        {
-            get
-            {
-                return this.validacionField;
-            }
-            set
-            {
-                this.validacionField = value;
             }
         }
     }
@@ -437,6 +407,73 @@ namespace ServicioAhorcadoSupremo
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProgresoPartida", Namespace="http://schemas.datacontract.org/2004/07/ServicioArcado.Modelo.POCO")]
+    public partial class ProgresoPartida : object
+    {
+        
+        private int idPartidaField;
+        
+        private char letraField;
+        
+        private string progresoPalabraField;
+        
+        private int validacionField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idPartida
+        {
+            get
+            {
+                return this.idPartidaField;
+            }
+            set
+            {
+                this.idPartidaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public char letra
+        {
+            get
+            {
+                return this.letraField;
+            }
+            set
+            {
+                this.letraField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string progresoPalabra
+        {
+            get
+            {
+                return this.progresoPalabraField;
+            }
+            set
+            {
+                this.progresoPalabraField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int validacion
+        {
+            get
+            {
+                return this.validacionField;
+            }
+            set
+            {
+                this.validacionField = value;
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioAhorcadoSupremo.IServiceAhorcado")]
     public interface IServiceAhorcado
@@ -458,7 +495,7 @@ namespace ServicioAhorcadoSupremo
         System.Threading.Tasks.Task<string> ActualizarPuntosAsync(int idJugador, int puntosNuevos);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/ActualizarProgresoPartida", ReplyAction="http://tempuri.org/IServiceAhorcado/ActualizarProgresoPartidaResponse")]
-        System.Threading.Tasks.Task<bool> ActualizarProgresoPartidaAsync(char letra, int verificacion, int idPartida);
+        System.Threading.Tasks.Task<bool> ActualizarProgresoPartidaAsync(char letra, int verificacion, string progresoPalabra, int idPartida);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/RegistrarPartida", ReplyAction="http://tempuri.org/IServiceAhorcado/RegistrarPartidaResponse")]
         System.Threading.Tasks.Task<string> RegistrarPartidaAsync(string fecha, int idRetador, int idPalabra);
@@ -480,6 +517,9 @@ namespace ServicioAhorcadoSupremo
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/ActualizarEstadoPartida", ReplyAction="http://tempuri.org/IServiceAhorcado/ActualizarEstadoPartidaResponse")]
         System.Threading.Tasks.Task<bool> ActualizarEstadoPartidaAsync(int estado, int idPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/RecuperarProgresoPartida", ReplyAction="http://tempuri.org/IServiceAhorcado/RecuperarProgresoPartidaResponse")]
+        System.Threading.Tasks.Task<ServicioAhorcadoSupremo.ProgresoPartida> RecuperarProgresoPartidaAsync(int idPartida);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -557,9 +597,9 @@ namespace ServicioAhorcadoSupremo
             return base.Channel.ActualizarPuntosAsync(idJugador, puntosNuevos);
         }
         
-        public System.Threading.Tasks.Task<bool> ActualizarProgresoPartidaAsync(char letra, int verificacion, int idPartida)
+        public System.Threading.Tasks.Task<bool> ActualizarProgresoPartidaAsync(char letra, int verificacion, string progresoPalabra, int idPartida)
         {
-            return base.Channel.ActualizarProgresoPartidaAsync(letra, verificacion, idPartida);
+            return base.Channel.ActualizarProgresoPartidaAsync(letra, verificacion, progresoPalabra, idPartida);
         }
         
         public System.Threading.Tasks.Task<string> RegistrarPartidaAsync(string fecha, int idRetador, int idPalabra)
@@ -595,6 +635,11 @@ namespace ServicioAhorcadoSupremo
         public System.Threading.Tasks.Task<bool> ActualizarEstadoPartidaAsync(int estado, int idPartida)
         {
             return base.Channel.ActualizarEstadoPartidaAsync(estado, idPartida);
+        }
+        
+        public System.Threading.Tasks.Task<ServicioAhorcadoSupremo.ProgresoPartida> RecuperarProgresoPartidaAsync(int idPartida)
+        {
+            return base.Channel.RecuperarProgresoPartidaAsync(idPartida);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

@@ -49,35 +49,42 @@ namespace ServicioArcado.Modelo.DAO
             return partida;
         }
 
-        public static Boolean ActualizarProgresoPartida(Char letra, int validacion, String progresoPalabra, int idPartida)
+        public static Boolean ActualizarProgresoPartida(char letra, int validacion, string progresoPalabra, int idPartida)
         {
             Boolean respuestaConexion = false;
-            MySqlConnection conexion = ConexionBaseDatos.obtenerConexion();
-            if(conexion != null)
+            MySqlConnection conexionBD = ConexionBaseDatos.obtenerConexion();
+            if (conexionBD != null)
             {
                 try
                 {
-                    String sql = "UPDATE partida SET letra = @letra, validacion=@validacion, progresoPalabra=@palabra WHERE idPartida=@idPartida";
-                    MySqlCommand sqlCommand = new MySqlCommand(sql, conexion);
-                    sqlCommand.Parameters.AddWithValue("@letra", letra);
-                    sqlCommand.Parameters.AddWithValue("@validacion", validacion);
-                    sqlCommand.Parameters.AddWithValue("@progresoPalabra", progresoPalabra);
-                    sqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
-                    sqlCommand.Prepare();
-                    int respuesta = sqlCommand.ExecuteNonQuery();
-                    respuestaConexion = (respuesta > 0);
-
+                    string sql = "UPDATE partida SET letra=@letra, validacion=@validacion, progresoPalabra=@progresoPalabra where idPartida=@idPartida";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@letra" ,letra);
+                    mySqlCommand.Parameters.AddWithValue("@validacion", validacion);
+                    mySqlCommand.Parameters.AddWithValue("@progresoPalabra", progresoPalabra);
+                    mySqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
+                    mySqlCommand.Prepare();
+                    int filasAfectadas = mySqlCommand.ExecuteNonQuery();
+                    if (filasAfectadas > 0)
+                    {
+                        respuestaConexion=true;
+                    }
+                    else
+                    {
+                        respuestaConexion = false;
+                    }
                 }
-                catch(MySqlException e)
+                catch (Exception ex)
                 {
-                    Console.WriteLine(e);
-                }
-                finally
-                {
-                    conexion.Close();
+                    respuestaConexion = false;
                 }
             }
+            else
+            {
+                respuestaConexion = false;
+            }
             return respuestaConexion;
+        
         }
 
         

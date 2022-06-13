@@ -19,7 +19,7 @@ namespace ServicioArcado
             return ActualizarProgresoPartidaDAO(letra, verificacion, progresoPalabra, idPartida);
         }
 
-        public Boolean ActualizarProgresoPartidaDAO(Char letra, int verificacion, String progresoPalabra, int idPartida)
+        public Boolean ActualizarProgresoPartidaDAO(char letra, int verificacion, string progresoPalabra, int idPartida)
         {
             Boolean respuesta = PartidaDAO.ActualizarProgresoPartida(letra, verificacion, progresoPalabra, idPartida);
             return respuesta;
