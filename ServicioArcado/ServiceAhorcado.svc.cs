@@ -109,9 +109,11 @@ namespace ServicioArcado
             return PartidaDAO.RecuperarProgresoPartida(idPartida);
         }
 
-        public Palabra RecuperarPalabraCategoria(int idCategoria)
+        public List<Palabra> RecuperarPalabraCategoria(int idCategoria)
         {
-            return PalabraDAO.RecuperarPalabaraCategoria(idCategoria);
+            List<Palabra> lista = new List<Palabra>();
+            lista = PalabraDAO.RecuperarPalabaraCategoria(idCategoria);
+            return lista;
         }
     }
 }

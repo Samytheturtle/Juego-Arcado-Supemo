@@ -75,9 +75,10 @@ namespace JuegoArcado
 
         private void BotonCrearPartida(object sender, RoutedEventArgs e)
         {
-            NuevaPartida ventanaNuevaPartida = new NuevaPartida();
+            NuevaPartida ventanaNuevaPartida = new NuevaPartida(idJugador);
             this.Close();
-            ventanaNuevaPartida.ShowDialog();
+            ventanaNuevaPartida.Show();
+            
         }
 
         private void BotonIniciarPartida(object sender, RoutedEventArgs e)

@@ -55,7 +55,7 @@ namespace ServicioArcado
         [OperationContract]
         ProgresoPartida RecuperarProgresoPartida(int idPartida);
         [OperationContract]
-        Palabra RecuperarPalabraCategoria(int idCategoria);
+        List<Palabra> RecuperarPalabraCategoria(int idCategoria);
 
     }
 }
