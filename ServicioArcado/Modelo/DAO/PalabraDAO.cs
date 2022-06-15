@@ -45,5 +45,45 @@ namespace ServicioArcado.Modelo.DAO
             }
             return recuperarPalabra;
         }
+
+        public static Palabra RecuperarPalabaraCategoria(int idCategoria)
+        {
+            Palabra recuperarPalabra = new Palabra();
+            MySqlConnection conexionBD = ConexionBaseDatos.obtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT * from palabra where idCategoria=@idCategoria";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@idCategoria", idCategoria);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    if (respuestaBD.Read())
+                    {
+                        recuperarPalabra.IdPalabra = ((respuestaBD.IsDBNull(0)) ? 0 : respuestaBD.GetInt32(0));
+                        recuperarPalabra.palabra = ((respuestaBD.IsDBNull(1)) ? "" : respuestaBD.GetString(1));
+                        recuperarPalabra.descripcion = (respuestaBD.IsDBNull(2) ? "" : respuestaBD.GetString(2));
+                        recuperarPalabra.dificultad = (respuestaBD.IsDBNull(3) ? "" : respuestaBD.GetString(3));
+                        recuperarPalabra.IdCategoria = (respuestaBD.IsDBNull(4) ? 0 : respuestaBD.GetInt32(4));
+                    }
+                    else
+                    {
+                        recuperarPalabra = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    recuperarPalabra = null;
+                }
+            }
+            else
+            {
+                recuperarPalabra = null;
+            }
+            return recuperarPalabra;
+        }
     }
+
+   
+
 }

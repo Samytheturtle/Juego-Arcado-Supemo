@@ -19,9 +19,23 @@ namespace JuegoArcado
     /// </summary>
     public partial class NuevaPartida : Window
     {
+        private int idJugador;
         public NuevaPartida()
         {
             InitializeComponent();
+        }
+        public NuevaPartida(int idJugador)
+        {
+            InitializeComponent();
+        }
+
+        public void RecuperarCategoria()
+        {
+            string categoria = cbCategoria.Text;
+            if(categoria=="Ciencias Naturales")
+            {
+
+            }
         }
     }
 }

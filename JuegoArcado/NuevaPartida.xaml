@@ -19,7 +19,7 @@
         <Label Content="Ahorcado - Crear Nueva Partida" FontSize="18" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
         <Label Content="Configurar Partida" FontSize="15" HorizontalAlignment="Left" Margin="33,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Categoria: " HorizontalAlignment="Left" Margin="71,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="143,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
+        <ComboBox x:Name="cbCategoria" HorizontalAlignment="Left" Margin="143,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
         <Label Content="Dificultad:" HorizontalAlignment="Left" Margin="378,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Margin="457,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
 
