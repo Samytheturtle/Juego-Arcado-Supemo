@@ -35,9 +35,13 @@ namespace JuegoArcado
         public static int PALABRA_INCORRECTA = 0;
         public static int PALABRA_CORRECTA = 1;
         public static int PENALIZACION_RETADOR = 2;
+        public static int PARTIDA_PERDIDA = 3;
+        public static int PARTIDA_GANADA = 4;
         ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
-
         DispatcherTimer timer = new DispatcherTimer();
+
+        public static int ESTADO_PARTIDA_PERDIDA = 0;
+        public static int ESTADO_PARTIDA_GANADA = 1;
 
 
         public AhorcadoRetador()
@@ -120,6 +124,7 @@ namespace JuegoArcado
             if (existe)
             {
                 lbInstruccionRetador.Content = "Letras Colocadas, Esperando al Jugador...";
+                ColocarLetrasAPalabra();
                 validacion = PALABRA_CORRECTA;
             }
             else
@@ -128,6 +133,8 @@ namespace JuegoArcado
                 if (progresoMuñeco != 1) { progresoMuñeco--; }
                 validacion = PENALIZACION_RETADOR;
             }
+
+            ValidarProgreso();
             ActualizarProgreso();
         }
 
@@ -138,17 +145,38 @@ namespace JuegoArcado
             Boolean existe = ComprobarLetra();
             if (!existe)
             {
-                lbInstruccionRetador.Content = "Extremidad Colocada, Esperando al Jugador...";
                 progresoMuñeco++;
+                lbInstruccionRetador.Content = "Extremidad Colocada, Esperando al Jugador...";
                 validacion = PALABRA_INCORRECTA;
             }
             else
             {             
                 lbInstruccionRetador.Content = "PENALIZADO, " + palabraCompleta + " Si Contiene la letra " + letra;
-                if (progresoMuñeco != 1) { progresoMuñeco--; }           
+                if (progresoMuñeco != 1) { progresoMuñeco--; }
+                ColocarLetrasAPalabra();
                 validacion = PENALIZACION_RETADOR;
             }
+
+            ValidarProgreso();
             ActualizarProgreso();
+        }
+
+        private void ValidarProgreso()
+        {
+            //Inicio - Valida si la partida ha terminado
+            if (progresoMuñeco == 7)
+            {
+                lbInstruccionRetador.Content = "Ultima Extremidad Colocada!, FIN DE LA PARTIDA";
+                validacion = PARTIDA_PERDIDA;
+                GuardarEstadoFinalPartida(ESTADO_PARTIDA_PERDIDA);
+            }
+            else if (!progresoPalabra.Contains(guion))
+            {
+                lbInstruccionRetador.Content = "Palabra Completada!, FIN DE LA PARTIDA";
+                validacion = PARTIDA_GANADA;
+                GuardarEstadoFinalPartida(ESTADO_PARTIDA_GANADA);
+            }
+            //Fin - Valida si la partida ha terminado;
         }
 
         private Boolean ComprobarLetra()
@@ -171,8 +199,10 @@ namespace JuegoArcado
             if (conexionServicio != null)
             {
                 ColocarExtremidadAhorcado(progresoMuñeco);
-                lbProgresoPalabra.Content = ColocarLetrasAPalabra();
+                lbProgresoPalabra.Content = progresoPalabra;
                 Boolean resultado = conexionServicio.ActualizarProgresoPartidaAsync(guion, validacion, progresoPalabra, idPartida).Result;
+
+                if (resultado == false) { MessageBox.Show("No se pudo actualizar el progreso.", "Error al actualizar el Progreso"); }
             }
             else
             {
@@ -189,7 +219,6 @@ namespace JuegoArcado
             SpriteAhorcado.Source = sprite;
         }
 
-
         private String ColocarLetrasAPalabra()
         {
             progresoPalabra = "";
@@ -204,7 +233,19 @@ namespace JuegoArcado
             return progresoPalabra;
         }
 
-        
+        private void GuardarEstadoFinalPartida(int estadoFinal)
+        {
+            if (conexionServicio != null)
+            {
+                Boolean resultado = conexionServicio.ActualizarEstadoPartidaAsync(estadoFinal,idPartida).Result;
+
+                if (resultado == false) { MessageBox.Show("No se pudo Guardar la Partida.", "Error al guardar"); }
+            }
+            else
+            {
+                MessageBox.Show("No se pudo Guardar la Partida.", "Error en la peticion");
+            }
+        }
 
         private void BtnSalir(object sender, RoutedEventArgs e)
         {

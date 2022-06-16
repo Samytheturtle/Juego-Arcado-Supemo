@@ -30,7 +30,7 @@
 
         <Label x:Name="lbProgresoPalabra" Content="" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,338,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794" HorizontalContentAlignment="Center" Height="52" Background="AntiqueWhite"/>
 
-        <Label x:Name="lbInstruccionRetador" Foreground="White" Content="" FontSize="30" FontWeight="Bold" BorderBrush="OrangeRed" BorderThickness="3" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="928"/>
+        <Label x:Name="lbInstruccionRetador" Content="Esperando al Jugador..." Foreground="White" FontSize="30" FontWeight="Bold" BorderBrush="OrangeRed" BorderThickness="3" HorizontalAlignment="Center" Margin="0,31,0,0" Grid.Row="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="928"/>
 
         <Button x:Name="BtnCorrecto" Content="Correcto" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="217,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="SpringGreen" Click="ClickBtnCorrecto" IsEnabled="False"/>
         <Button x:Name="BtnIncorrecto" Content="Incorrecto" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="555,102,0,0" Grid.Row="2" VerticalAlignment="Top" Height="70" Width="182" Background="Red" Click="ClickBtnIncorrecto" IsEnabled="False"/>

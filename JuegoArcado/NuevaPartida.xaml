@@ -19,15 +19,20 @@
         <Label Content="Ahorcado - Crear Nueva Partida" FontSize="18" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
         <Label Content="Configurar Partida" FontSize="15" HorizontalAlignment="Left" Margin="33,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Categoria: " HorizontalAlignment="Left" Margin="71,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbCategoria" HorizontalAlignment="Left" Margin="143,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
+        <ComboBox HorizontalAlignment="Left" Margin="143,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
+        <Label Content="Dificultad:" HorizontalAlignment="Left" Margin="378,54,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="457,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="185"/>
 
-        <Button Content="Empezar" HorizontalAlignment="Left" Height="30" Margin="531,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="122" Click="CrearPartida"/>
+        <Button Content="Empezar" HorizontalAlignment="Left" Height="30" Margin="531,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="122"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Height="30" Margin="41,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="122"/>
         <WrapPanel x:Name="wpOpciones" Grid.Row="2" Margin="35, 15">
-            <DataGrid x:Name="dgPalabras" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single" Height="190" Width="630" Opacity="0.90">
-                
+            <DataGrid x:Name="dgPalabras" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Height="190" Width="630" Opacity="0.90">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Palabra" Width="*" Binding="{Binding Palabra}"/>
+                    <DataGridTextColumn Header="Descripción" Width="*" Binding="{Binding Descripcion}"/>
+                    <DataGridTextColumn Header="Dificultad" Width="*" Binding="{Binding Dificultad}"/>
+                </DataGrid.Columns>
             </DataGrid>
         </WrapPanel>
-        <Button Content="Actualizar Palabras" HorizontalAlignment="Left" Margin="531,52,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Height="30" Click="ActualizarPalabras"/>
     </Grid>
 </Window>

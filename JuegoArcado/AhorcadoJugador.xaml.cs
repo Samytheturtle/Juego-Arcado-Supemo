@@ -109,23 +109,6 @@ namespace JuegoArcado
             }
             ColocarExtremidadAhorcado();
             lbProgresoPalabra.Content = progresoPalabra;
-            if (progresoPalabra.Contains(guion) || progresoMuñeco != 7)
-            {
-                HabilitarBotonesLetras(true);
-                ColocarInstruccion("Selecciona una letra");
-            }
-            else
-            {
-                if (!progresoPalabra.Contains(guion))
-                {
-                    ColocarInstruccion("PARTIDA FINALIZADA, HAS GANADO!");
-                }
-                else if(progresoMuñeco == 7)
-                { 
-                    ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); 
-                }
-                
-            }
             
         }
 
