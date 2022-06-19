@@ -38,7 +38,12 @@ namespace JuegoArcado
             string categoria = cbCategoria.Text;
             if(categoria=="Ciencias Naturales")
             {
+
                 idCategoria = 1;
+            }
+            else
+            {
+                idCategoria = 2;
             }
 
             MostrarPalabras(idCategoria);
