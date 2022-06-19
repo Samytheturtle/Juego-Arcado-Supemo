@@ -28,26 +28,31 @@ namespace JuegoArcado
 
         private void cajaInteraccionNombre(object sender, RoutedEventArgs e)
         {
+            labelCamposInvalidosNombre.Content= "";
             cajaDTextoNombre.Clear();
         }
 
         private void cajaInteraccionTelefono(object sender, RoutedEventArgs e)
         {
+            labelCamposInvalidosTelefonos.Content = "";
             cajaDTextoTelfono.Clear();
         }
 
         private void cajaInteraccionApellidos(object sender, RoutedEventArgs e)
         {
-           cajaDTextoApellidos.Clear();
+            labelCamposInvalidosApellidos.Content = "";
+            cajaDTextoApellidos.Clear();
         }
 
         private void cajaInteraccionCorreo(object sender, RoutedEventArgs e)
         {
+            labelCamposInvalidosCorreo.Content = "";
             cajaDTextoCorreo.Clear();
         }
 
         private void cajaInteraccionContrasenia(object sender, RoutedEventArgs e)
         {
+            labelCamposInvalidosContrasenia.Content = "";
             cajaDTextoContrasenia.Clear();
         }
 
@@ -60,7 +65,7 @@ namespace JuegoArcado
 
         private void botonClicRegistrarse(object sender, RoutedEventArgs e)
         {
-            if (!validarCamposVacios()&& validarCorreo()>0)
+            if (!validarCamposVacios() && validarCorreo()>0)
             {
                 registrarJugador();
                 AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
@@ -72,11 +77,7 @@ namespace JuegoArcado
             }
             else if(validarCorreo()==0)
             {
-                AlertaFallo alertaFalloRegistro = new AlertaFallo();
-                alertaFalloRegistro.ventanaApertura = 1;
-                alertaFalloRegistro.labelInforAlerta.Content = "El correo que usted ingreso ya tiene una cuenta registrada";
-                alertaFalloRegistro.labelTipoFallo.Content = "ERROR EN REGISTRO";
-                alertaFalloRegistro.ShowDialog();
+                MessageBox.Show("El correo que usted ingreso ya tiene una cuenta registrada");
             }
         }
         private Boolean validarCamposVacios()
@@ -151,6 +152,11 @@ namespace JuegoArcado
             jugadorNuevo.Puntaje= 0;
 
             registrarJugador.RegistrarJugadorAsync(jugadorNuevo);
+        }
+
+        private void cajaInteraccionesCalendario(object sender, RoutedEventArgs e)
+        {
+            labelCamposInvalidosCalendario.Content = "";
         }
     }
 }

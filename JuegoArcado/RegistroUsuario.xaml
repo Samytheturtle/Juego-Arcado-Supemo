@@ -18,7 +18,7 @@
         <TextBox x:Name="cajaDTextoTelfono" HorizontalAlignment="Left" Margin="58,142,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top" Width="312" Height="29" FontSize="18" GotFocus="cajaInteraccionTelefono"/>
         <TextBox x:Name="cajaDTextoCorreo" HorizontalAlignment="Left" Margin="427,143,0,0" TextWrapping="Wrap" Text="Correo" VerticalAlignment="Top" Width="312" Height="28" FontSize="18" GotFocus="cajaInteraccionCorreo"/>
         <TextBox x:Name="cajaDTextoContrasenia" HorizontalAlignment="Left" Margin="427,0,0,0" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Center" Width="312" Height="29" FontSize="18" GotFocus="cajaInteraccionContrasenia"/>
-        <Calendar x:Name="calendarioInformacion" HorizontalAlignment="Left" Margin="58,233,0,0" VerticalAlignment="Top" Height="167" Width="192">
+        <Calendar x:Name="calendarioInformacion" HorizontalAlignment="Left" Margin="58,233,0,0" VerticalAlignment="Top" Height="167" Width="192" GotFocus="cajaInteraccionesCalendario">
             <Calendar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFE4EAF0"/>
