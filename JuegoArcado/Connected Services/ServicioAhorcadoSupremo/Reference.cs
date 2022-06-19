@@ -523,6 +523,9 @@ namespace ServicioAhorcadoSupremo
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/RecuperarPalabraCategoria", ReplyAction="http://tempuri.org/IServiceAhorcado/RecuperarPalabraCategoriaResponse")]
         System.Threading.Tasks.Task<ServicioAhorcadoSupremo.Palabra[]> RecuperarPalabraCategoriaAsync(int idCategoria);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/RecuperarPartida", ReplyAction="http://tempuri.org/IServiceAhorcado/RecuperarPartidaResponse")]
+        System.Threading.Tasks.Task<ServicioAhorcadoSupremo.Partida> RecuperarPartidaAsync(string fecha, int idRetador, int idPalabra);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
@@ -648,6 +651,11 @@ namespace ServicioAhorcadoSupremo
         public System.Threading.Tasks.Task<ServicioAhorcadoSupremo.Palabra[]> RecuperarPalabraCategoriaAsync(int idCategoria)
         {
             return base.Channel.RecuperarPalabraCategoriaAsync(idCategoria);
+        }
+        
+        public System.Threading.Tasks.Task<ServicioAhorcadoSupremo.Partida> RecuperarPartidaAsync(string fecha, int idRetador, int idPalabra)
+        {
+            return base.Channel.RecuperarPartidaAsync(fecha, idRetador, idPalabra);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

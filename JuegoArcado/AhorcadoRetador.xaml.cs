@@ -20,6 +20,8 @@ namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
+        private int idJugador;
+        private Partida partida;
         public int idPartida = 1;
         public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
@@ -48,6 +50,22 @@ namespace JuegoArcado
         {
             
             InitializeComponent();
+            palabraCompleta = "WINDOWS";
+            cadenaPalabraCompleta = palabraCompleta.ToCharArray();
+            progresoPalabra = palabraCompleta;
+            cadenaProgresoPalabra = progresoPalabra.ToCharArray();
+            lbPalabra.Content = palabraCompleta;
+            InicializarProgresoPalabra();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += ticker;
+            timer.Start();
+        }
+        public AhorcadoRetador(int idJugador, Partida partida)
+        {
+
+            InitializeComponent();
+            this.idJugador = idJugador;
+            this.partida = partida;
             palabraCompleta = "WINDOWS";
             cadenaPalabraCompleta = palabraCompleta.ToCharArray();
             progresoPalabra = palabraCompleta;

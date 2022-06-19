@@ -115,5 +115,9 @@ namespace ServicioArcado
             lista = PalabraDAO.RecuperarPalabaraCategoria(idCategoria);
             return lista;
         }
+        public Partida RecuperarPartida(String fecha, int idRetador, int idPalabra)
+        {
+            return PartidaDAO.RecuperarPartida(fecha, idRetador, idPalabra);
+        }
     }
 }

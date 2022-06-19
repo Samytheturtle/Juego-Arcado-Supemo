@@ -59,7 +59,7 @@ namespace ServicioArcado.Modelo.DAO
                 {
                     string sql = "UPDATE partida SET letra=@letra, validacion=@validacion, progresoPalabra=@progresoPalabra where idPartida=@idPartida";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
-                    mySqlCommand.Parameters.AddWithValue("@letra" ,letra);
+                    mySqlCommand.Parameters.AddWithValue("@letra", letra);
                     mySqlCommand.Parameters.AddWithValue("@validacion", validacion);
                     mySqlCommand.Parameters.AddWithValue("@progresoPalabra", progresoPalabra);
                     mySqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
@@ -67,7 +67,7 @@ namespace ServicioArcado.Modelo.DAO
                     int filasAfectadas = mySqlCommand.ExecuteNonQuery();
                     if (filasAfectadas > 0)
                     {
-                        respuestaConexion=true;
+                        respuestaConexion = true;
                     }
                     else
                     {
@@ -84,21 +84,21 @@ namespace ServicioArcado.Modelo.DAO
                 respuestaConexion = false;
             }
             return respuestaConexion;
-        
+
         }
 
-        
+
 
         public static List<Partida> RecuperarPartidasDisponibles()
         {
             List<Partida> partidasDisponibles = new List<Partida>();
             MySqlConnection conexion = ConexionBaseDatos.obtenerConexion();
-            if(conexion != null)
+            if (conexion != null)
             {
                 try
                 {
                     MySqlCommand sqlCommand = new MySqlCommand(SELECT_PARTIDAS_DISPONIBLES);
-                    sqlCommand.Connection=conexion;
+                    sqlCommand.Connection = conexion;
                     sqlCommand.Prepare();
                     MySqlDataReader reader = sqlCommand.ExecuteReader();
                     if (reader.HasRows)
@@ -112,8 +112,9 @@ namespace ServicioArcado.Modelo.DAO
                             partida.idPalabra = reader.GetInt16(3);
                             partidasDisponibles.Add(partida);
                         }
-                    }                   
-                }catch(MySqlException e)
+                    }
+                }
+                catch (MySqlException e)
                 {
                     Console.WriteLine(e);
                 }
@@ -221,16 +222,16 @@ namespace ServicioArcado.Modelo.DAO
         {
             ProgresoPartida partida = null;
             MySqlConnection connection = ConexionBaseDatos.obtenerConexion();
-            if(connection != null)
+            if (connection != null)
             {
                 try
                 {
                     string sql = "SELECT idPartida, letra, validacion, progresoPalabra FROM partida WHERE idPartida = @idPartida";
                     MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
-                    sqlCommand.Parameters.AddWithValue("@idPartida",idPartida);
+                    sqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
                     sqlCommand.Prepare();
                     MySqlDataReader reader = sqlCommand.ExecuteReader();
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         partida = new ProgresoPartida();
                         partida.idPartida = reader.GetInt32(0);
@@ -238,7 +239,44 @@ namespace ServicioArcado.Modelo.DAO
                         partida.validacion = reader.GetInt32(2);
                         partida.progresoPalabra = reader.GetString(3);
                     }
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return partida;
+        }
+        public static Partida RecuperarPartida(String fecha, int idRetador, int idPalabra)
+        {
+            Partida partida = null;
+            MySqlConnection connection = ConexionBaseDatos.obtenerConexion();
+            if (connection != null)
+            {
+                try
+                {
+                    string sql = "SELECT idPartida, fecha, idRetador, idPalabra FROM partida WHERE fecha=@fecha and idRetador=idRetador and idPalabra=@idPalabra";
+                    MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
+                    sqlCommand.Parameters.AddWithValue("@fecha", fecha);
+                    sqlCommand.Parameters.AddWithValue("@idRetador", idRetador);
+                    sqlCommand.Parameters.AddWithValue("@idPalabra", idPalabra);
+                    sqlCommand.Prepare();
+                    MySqlDataReader reader = sqlCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        partida = new Partida();
+                        partida.IdPartida = reader.GetInt32(0);
+                        partida.fecha = reader.GetString(1);
+                        partida.idRetador = reader.GetInt32(2);
+                        partida.idPalabra = reader.GetInt32(3);
+                    }
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
