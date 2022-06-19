@@ -5,17 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JuegoArcado"
         mc:Ignorable="d"
-        Title="PerfilPrincipal" Height="450" Width="900">
+        Title="PerfilPrincipal" Height="470" Width="900">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/FondoPerfilPrincipal.jpg"/>
         </Grid.Background>
         <Label Content="Puntaje total:" HorizontalAlignment="Left" Margin="610,5,0,0" VerticalAlignment="Top" Foreground="#FFF9F6F6" FontWeight="Bold" FontSize="20"/>
-        <DataGrid x:Name="dgPartidas" AutoGenerateColumns="False" IsReadOnly="True" Margin="51,217,49,28" Opacity="0.75">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Fecha de Partida" Width="*" Binding="{Binding fechaPartida}"/>
-                <DataGridTextColumn Header="Jugador Vencido" Width="*" Binding="{Binding idRetador}"/> 
-            </DataGrid.Columns>
+        <DataGrid x:Name="dgPartidas" AutoGenerateColumns="True" IsReadOnly="True" Margin="21,194,49,76" Opacity="0.75">
+
         </DataGrid>
         <Label Content="Nombre Completo :" HorizontalAlignment="Left" Margin="21,96,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
         <Label Content="Fecha de Nacimiento :" HorizontalAlignment="Left" Margin="21,148,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFF9F5F5" FontWeight="Bold" FontSize="18"/>
@@ -27,5 +24,6 @@
         <Label x:Name="lbCelular" HorizontalAlignment="Left" Margin="610,102,0,0" VerticalAlignment="Top" Width="216" Height="28" Foreground="#FFF1EBEB"/>
         <Label x:Name="lbCorreo" HorizontalAlignment="Left" Margin="615,159,0,0" VerticalAlignment="Top" Width="211" Height="30" Foreground="#FFF7F0F0"/>
         <Label x:Name="lbPunatje" HorizontalAlignment="Left" Margin="752,14,0,0" VerticalAlignment="Top" Height="28" Width="74" Foreground="#FFF9F2F2"/>
+        <Button Content="Regresar" HorizontalAlignment="Left" Margin="21,395,0,0" VerticalAlignment="Top" Height="29" Width="136" Click="Regresar"/>
     </Grid>
 </Window>

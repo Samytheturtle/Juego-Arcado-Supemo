@@ -59,6 +59,7 @@ namespace JuegoArcado
             tbApellidos.Text = recuperarDatosJugador.Apellidos;
             tbCelular.Text = recuperarDatosJugador.Celular;
             tbContrasena.Text = recuperarDatosJugador.Password;
+            cFechaNacimiento.SelectedDate = Convert.ToDateTime(recuperarDatosJugador.FechaNacimiento);
             
         }
 

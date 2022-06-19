@@ -1,6 +1,7 @@
 ﻿using ServicioAhorcadoSupremo;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,23 +36,42 @@ namespace JuegoArcado
 
         public void MostrarDatosJugador()
         {
+            DateTime fecha;
             Jugador jugador = new Jugador();
             ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             jugador = serviceAhorcadoClient.recuperarJugadorAsync(idJugador.ToString()).Result;
             lbNombre.Content = jugador.Nombre + " " + jugador.Apellidos;
             lbCorreo.Content = jugador.CorreoElectronico;
-            lbFecha.Content = jugador.FechaNacimiento;
+            fecha = Convert.ToDateTime(jugador.FechaNacimiento);
+            string fechaNacimiento = fecha.ToString("yyyy-MM-dd");
+            lbFecha.Content = fechaNacimiento;
             lbCelular.Content = jugador.Celular;
             lbPunatje.Content = jugador.Puntaje;
         }
 
         public void MostrarPartidasGanadas()
         {
-            DataGridTextColumn partidasGanadas = new DataGridTextColumn();
-            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServiceAhorcadoClient();
+            DateTime fecha;
             PartidaGanada[] partidaGanadas;
+            DataTable dataTable = new DataTable();
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServiceAhorcadoClient();
             partidaGanadas = serviceAhorcadoClient.RecuperarPartidasJugadorAsync(idJugador.ToString()).Result;
-            dgPartidas.Items.Add(partidaGanadas);
+            dataTable.Columns.Add("Fecha Partida", typeof(string));
+            dataTable.Columns.Add("Jugador Vencido", typeof(string));
+            for(int i = 0; i < partidaGanadas.Length; i++)
+            {
+                fecha = Convert.ToDateTime(partidaGanadas[i].fechaPartida);
+                dataTable.Rows.Add(fecha.ToString("yyyy-MM-dd") ,partidaGanadas[i].jugadorVencido);
+            }
+            dgPartidas.ItemsSource = dataTable.DefaultView;
+            
+        }
+
+        private void Regresar(object sender, RoutedEventArgs e)
+        {
+            ListaPartidas listaPartidas = new ListaPartidas(idJugador);
+            this.Close();
+            listaPartidas.Show();
         }
     }
 }
