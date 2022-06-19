@@ -20,9 +20,11 @@ namespace JuegoArcado
 {  
     public partial class AhorcadoRetador : Window
     {
-        private int idJugador;
+        private int idRetador;
         private Partida partida;
+
         public int idPartida = 1;
+        public Palabra palabra;
         public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
 
@@ -47,34 +49,51 @@ namespace JuegoArcado
 
 
         public AhorcadoRetador()
-        {
-            
+        {           
             InitializeComponent();
+            /*
             palabraCompleta = "WINDOWS";
             cadenaPalabraCompleta = palabraCompleta.ToCharArray();
             progresoPalabra = palabraCompleta;
             cadenaProgresoPalabra = progresoPalabra.ToCharArray();
             lbPalabra.Content = palabraCompleta;
             InicializarProgresoPalabra();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += ticker;
+            timer.Start();*/
+        }
+        public AhorcadoRetador(int idRetador, Partida partida)
+        {
+
+            InitializeComponent();
+            this.idRetador = idRetador; 
+            this.partida = partida;
+            InicializarDatos();
+            //palabraCompleta = "WINDOWS";
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += ticker;
             timer.Start();
         }
-        public AhorcadoRetador(int idJugador, Partida partida)
-        {
 
-            InitializeComponent();
-            this.idJugador = idJugador;
-            this.partida = partida;
-            palabraCompleta = "WINDOWS";
-            cadenaPalabraCompleta = palabraCompleta.ToCharArray();
-            progresoPalabra = palabraCompleta;
-            cadenaProgresoPalabra = progresoPalabra.ToCharArray();
-            lbPalabra.Content = palabraCompleta;
-            InicializarProgresoPalabra();
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += ticker;
-            timer.Start();
+        private void InicializarDatos()
+        {
+            idPartida = partida.IdPartida;
+            if (conexionServicio != null)
+            {
+                palabra = conexionServicio.RecuperarPalabraAsync(partida.idPalabra).Result;
+                if (palabra != null)
+                {
+                    palabraCompleta = palabra.palabra;
+                    cadenaPalabraCompleta = palabraCompleta.ToCharArray();
+                    progresoPalabra = palabraCompleta;
+                    cadenaProgresoPalabra = progresoPalabra.ToCharArray(); //Ahora mismo el progreso es igual a la palabra completa
+                    InicializarProgresoPalabra(); //Se le colocarán los guiones a el progreso
+                    lbPalabra.Content = palabraCompleta;
+                    lbDificultad.Content = palabra.dificultad;
+                }
+                else { MessageBox.Show("No se recupero la información de palabra de la base de datos", "Error de SQL"); }
+            }
+            else { MessageBox.Show("No se recuperó la información de la palabra, verifique su conexión", "Error de Solicitud"); }       
         }
 
         private void ticker(object? sender, EventArgs e)

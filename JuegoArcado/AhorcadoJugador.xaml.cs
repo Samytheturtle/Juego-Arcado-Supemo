@@ -55,11 +55,15 @@ namespace JuegoArcado
                 if (progresoPartida != null)
                 {
                     if (progresoPartida.letra == '-')
-                    {                      
+                    {
                         progresoPalabra = progresoPartida.progresoPalabra;
                         ActualizarProgresoVentana(progresoPartida.validacion);
                         timer.Stop();
                     }
+
+                    if (progresoPartida.estado == 1) { TerminarPartida(1); } // 1 para Partida Ganada
+                    if (progresoPartida.estado == 0) { TerminarPartida(0); } // 0 para Partdida Perdida
+
                 }
                 else
                 {
@@ -72,6 +76,19 @@ namespace JuegoArcado
                 MessageBox.Show("Por el momento no se puede enviar la solicitud", "Error de Solicitud");
                 timer.Stop();
             }
+        }
+
+        private void TerminarPartida(int estadoPartida)
+        {
+            if(estadoPartida == 1)
+            {
+                lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS GANADO!";
+            }
+            if(estadoPartida == 0)
+            {
+                lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS PERDIDO :C";
+            }
+            HabilitarBotonesLetras(false);
         }
 
         private void EnviarLetra(char letra)
