@@ -413,6 +413,8 @@ namespace ServicioAhorcadoSupremo
     public partial class ProgresoPartida : object
     {
         
+        private int estadoField;
+        
         private int idPartidaField;
         
         private char letraField;
@@ -420,6 +422,19 @@ namespace ServicioAhorcadoSupremo
         private string progresoPalabraField;
         
         private int validacionField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int estado
+        {
+            get
+            {
+                return this.estadoField;
+            }
+            set
+            {
+                this.estadoField = value;
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int idPartida
