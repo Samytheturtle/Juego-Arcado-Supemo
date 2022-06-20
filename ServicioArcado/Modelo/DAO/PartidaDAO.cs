@@ -236,7 +236,7 @@ namespace ServicioArcado.Modelo.DAO
                         partida = new ProgresoPartida();
                         partida.idPartida = reader.GetInt32(0);
                         partida.estado = reader.GetInt32(1);
-                        partida.letra = reader.GetChar(2);
+                        partida.letra = char.Parse(reader.GetString(2));
                         partida.validacion = reader.GetInt32(3);
                         partida.progresoPalabra = reader.GetString(4);
                     }

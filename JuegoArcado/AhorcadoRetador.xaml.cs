@@ -23,7 +23,7 @@ namespace JuegoArcado
         private int idRetador;
         private Partida partida;
 
-        public int idPartida = 1;
+        public int idPartida;
         public Palabra palabra;
         public String palabraCompleta;
         public Char[] cadenaPalabraCompleta;
@@ -73,10 +73,9 @@ namespace JuegoArcado
             EsperarJugador();
         }
 
-
         private void InicializarDatos()
         {
-            idPartida = partida.IdPartida;
+            this.idPartida = partida.IdPartida;
             if (conexionServicio != null)
             {
                 palabra = conexionServicio.RecuperarPalabraAsync(partida.idPalabra).Result;
@@ -148,7 +147,7 @@ namespace JuegoArcado
                 if(progresoPartida != null)
                 {
                     Char letranueva = progresoPartida.letra;
-                    if(letra != letranueva && letranueva != guion && !letranueva.Equals(null))
+                    if(letra != letranueva && letranueva != guion) //letranueva != null
                     {
                         RecibirLetra(letranueva);
                     }

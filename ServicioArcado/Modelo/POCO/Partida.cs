@@ -13,8 +13,8 @@ namespace ServicioArcado.Modelo.POCO
         public int idJugador { get; set; }
         public int estado { get; set; }
         public int idPalabra { get; set; }
-        //public char letra { get; set; }
-        //public int validacion { get; set; }
+        public char letra { get; set; }
+        public int validacion { get; set; }
 
 
     }
