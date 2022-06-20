@@ -58,7 +58,7 @@
         <Button x:Name="BtnZ" Content="Z" FontStyle="Italic" FontSize="29" HorizontalAlignment="Left" Margin="790,136,0,0" Grid.Row="2" VerticalAlignment="Top" Height="43" Width="43" Click="ClickBtnZ"/>
 
 
-        <Button Content="Rendirse" FontSize="25" Background="OrangeRed" HorizontalAlignment="Left" Margin="798,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="48" Width="125" Click="BtnRendirse"/>
+        <Button Content="Salir" FontSize="25" Background="OrangeRed" HorizontalAlignment="Left" Margin="798,0,0,0" Grid.Row="3" VerticalAlignment="Center" Height="48" Width="125" Click="BtnRendirse"/>
 
 
     </Grid>
