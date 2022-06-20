@@ -61,8 +61,10 @@ namespace ServicioArcado
 
         [OperationContract]
         int RecuperarIdJugadorPartida(int idPartida);
+
         [OperationContract]
         int RecuperarIdRetadorPartida(int idPartida);
+
         [OperationContract]
         int RecuperarIdPalabraPartida(int idPartida);
 

@@ -36,22 +36,37 @@ namespace JuegoArcado
         public AhorcadoJugador()
         {
             InitializeComponent();
-            lbNombreRetador.Content = nombreRetador;
+            /*lbNombreRetador.Content = nombreRetador;
             lbDescripcionPalabra.Content = descripcionPalabra;
             lbProgresoPalabra.Content = progresoPalabra;
             timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += ticker;
+            timer.Tick += ticker;*/
         }
         public AhorcadoJugador(int idJugador,int idPartida)
         {
+            this.idJugador = idJugador;
+            this.idPartida = idPartida;
             InitializeComponent();
-            lbNombreRetador.Content = nombreRetador;
+            InicializarDatos();
+
+            /*lbNombreRetador.Content = nombreRetador;
             lbDescripcionPalabra.Content = descripcionPalabra;
-            lbProgresoPalabra.Content = progresoPalabra;
+            lbProgresoPalabra.Content = progresoPalabra;*/
+
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += ticker;
-            this.idJugador = idJugador;
-            this.idPartida=idPartida;
+            
+        }
+
+        private void InicializarDatos()
+        {
+            int idRetador = conexionServicio.RecuperarIdRetadorPartidaAsync(idPartida).Result;
+            Jugador retadorTemp = conexionServicio.recuperarJugadorAsync(idRetador.ToString()).Result;
+            lbNombreRetador.Content = retadorTemp.Nombre;
+
+            int idPalabra = conexionServicio.RecuperarIdPalabraPartidaAsync(idPartida).Result;
+            Palabra palabraTemp = conexionServicio.RecuperarPalabraAsync(idPalabra).Result;
+            lbDescripcionPalabra.Content = palabraTemp.descripcion;
         }
 
         private void ticker(object? sender, EventArgs e)
