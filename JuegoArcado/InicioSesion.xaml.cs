@@ -27,14 +27,7 @@ namespace JuegoArcado
 
         private void CajainteraccionCorreo(object sender, RoutedEventArgs e)
         {
-            if (CajaDTextoContrasenia.Text == "")
-            {
-                CajaDTextoContrasenia.Text = "Ingresa tu contraseña";
-            }
-            else
-            {
-                CajaDTextoCorreo.Clear();
-            }
+            CajaDTextoCorreo.Clear();
         }
 
         private void CajainteraccionContrasenia(object sender, RoutedEventArgs e)
@@ -84,7 +77,7 @@ namespace JuegoArcado
                 labelCamposInvalidosCorreo.Content = "Por favor, introduzca un correo";
                 camposVacios = true;
             }
-            if (CajaDTextoContrasenia.Text == "")
+            if (CajaDTextoContrasenia.Password == "")
             {
                 labelCamposInvalidosContrasenia.Content = "Por favor, introduzca su contrasenia";
                 camposVacios = true;
@@ -94,7 +87,7 @@ namespace JuegoArcado
         private int validarCorreo()
         {
             ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
-            int resultado = serviceAhorcadoClient.VerificarJugadorAsync(CajaDTextoCorreo.Text, CajaDTextoContrasenia.Text).Result;
+            int resultado = serviceAhorcadoClient.VerificarJugadorAsync(CajaDTextoCorreo.Text, CajaDTextoContrasenia.Password).Result;
             return resultado;
         }
     }
