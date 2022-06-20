@@ -1,6 +1,7 @@
 ﻿using ServicioAhorcadoSupremo;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -22,6 +23,7 @@ namespace JuegoArcado
     /// </summary>
     public partial class ListaPartidas : Window
     {
+        DataTable dataTable = new DataTable();
         public int idJugador;
         Timer timer;
         public ListaPartidas()
@@ -46,9 +48,22 @@ namespace JuegoArcado
         }
         public Partida[] actualizarPartidas()
         {
-            ServicioAhorcadoSupremo.ServiceAhorcadoClient actualizarPartidas = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
+            
+            dataTable.Columns.Add("Fecha Partida", typeof(string));
+            dataTable.Columns.Add("Nombre Retador", typeof(string));
+            dataTable.Columns.Add("Correo Retador", typeof(string));
+            dataTable.Columns.Add("Dificultad", typeof(string));
+            ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             Partida[] listaPartida;
-            listaPartida = actualizarPartidas.RecuperarPartidasDisponiblesAsync().Result;
+            listaPartida = serviceAhorcadoClient.RecuperarPartidasDisponiblesAsync().Result;
+            for (int i = 0; i < listaPartida.Length; i++)
+            {
+                string idJugador = listaPartida[i].idRetador.ToString();
+                string idPalabra = listaPartida[i].IdPartida.ToString();
+                Palabra palabra = serviceAhorcadoClient.RecuperarPalabraAsync(int.Parse(idPalabra)).Result;
+                Jugador jugador = serviceAhorcadoClient.recuperarJugadorAsync(idJugador).Result;
+                dataTable.Rows.Add(listaPartida[i].fecha,jugador.Nombre,jugador.CorreoElectronico,palabra.dificultad);
+            }
             return listaPartida;
 
         }
@@ -58,7 +73,7 @@ namespace JuegoArcado
            
             if (actualizarPartidas() != null)
             {
-                dgPartidasJugadores.ItemsSource = actualizarPartidas();
+                dgPartidasJugadores.ItemsSource = dataTable.DefaultView;
             }
             else
             {
