@@ -261,7 +261,7 @@ namespace ServicioArcado.Modelo.DAO
             {
                 try
                 {
-                    string sql = "SELECT idPartida, fecha, idRetador, idPalabra FROM partida WHERE fecha=@fecha and idRetador=idRetador and idPalabra=@idPalabra";
+                    string sql = "SELECT idPartida, fecha, idRetador, idJugador, idPalabra FROM partida WHERE fecha=@fecha and idRetador=idRetador and idPalabra=@idPalabra";
                     MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
                     sqlCommand.Parameters.AddWithValue("@fecha", fecha);
                     sqlCommand.Parameters.AddWithValue("@idRetador", idRetador);
@@ -274,7 +274,8 @@ namespace ServicioArcado.Modelo.DAO
                         partida.IdPartida = reader.GetInt32(0);
                         partida.fecha = reader.GetString(1);
                         partida.idRetador = reader.GetInt32(2);
-                        partida.idPalabra = reader.GetInt32(3);
+                        partida.idJugador = reader.GetInt32(3);
+                        partida.idPalabra = reader.GetInt32(4);
                     }
                 }
                 catch (Exception ex)
