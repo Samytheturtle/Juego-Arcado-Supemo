@@ -49,6 +49,7 @@ namespace JuegoArcado
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             PerfilPrincipal ventanaPerfilPrincial= new PerfilPrincipal(idJugador);
             this.Close();
             ventanaPerfilPrincial.Show();
@@ -91,10 +92,11 @@ namespace JuegoArcado
 
         private void BotonCrearPartida(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             NuevaPartida ventanaNuevaPartida = new NuevaPartida(idJugador);
             this.Close();
             ventanaNuevaPartida.Show();
-            timer.Stop();
+            
             
         }
 
@@ -106,6 +108,7 @@ namespace JuegoArcado
             }
             else
             {
+                timer.Stop();
                 ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
                 DataRowView dataRowView = (DataRowView)dgPartidasJugadores.SelectedItems[0];
                 string idPartida = dataRowView["IdPartida"].ToString();
@@ -113,25 +116,27 @@ namespace JuegoArcado
                 serviceAhorcadoClient.RegistrarJugadorEnPartidaAsync(int.Parse(idPartida), idJugador);
                 this.Close();
                 ahorcadoJugador.Show();
-                timer.Stop();
+                
             }
             
         }
 
         private void BotonModificarPerfil(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             EditarInformacionUsuario editarInformacionUsuario = new EditarInformacionUsuario(idJugador);
             this.Close();
             editarInformacionUsuario.Show();
-            timer.Stop();
+            
         }
 
         private void BotonSalir(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             InicioSesion ventanaInicioSesion = new InicioSesion();
             this.Close();
             ventanaInicioSesion.Show();
-            timer.Stop();
+            
         }
     }
 }

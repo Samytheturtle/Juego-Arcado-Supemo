@@ -78,16 +78,17 @@ namespace JuegoArcado
                         ActualizarProgresoVentana(progresoPartida.validacion);
                         timer.Stop();
                     }
-                    if (progresoPartida.estado == 3) { TerminarPartida(3); } // 3 para Partida Ganada
-                    if (progresoPartida.estado == 4) { TerminarPartida(4); } // 4 para Partdida Perdida
-                    if (progresoPartida.letra == '?') 
+                    else if (progresoPartida.letra == '?')
                     {
                         ListaPartidas ventana = new ListaPartidas(idJugador);
-                        MessageBox.Show("El RETADOR A ABANDONADO A TU SUERTE", ":p");
+                        MessageBox.Show("El RETADOR TE HA ABANDONADO A TU SUERTE", "FIN DE LA PARTIDA");
                         timer.Stop();
                         this.Close();
                         ventana.Show();
                     }
+                    if (progresoPartida.estado == 3) { TerminarPartida(3); } // 3 para Partida Ganada
+                    if (progresoPartida.estado == 4) { TerminarPartida(4); } // 4 para Partdida Perdida
+
                 }
                 else
                 {
@@ -109,13 +110,18 @@ namespace JuegoArcado
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS GANADO!";
                 Jugador jugador = conexionServicio.recuperarJugadorAsync(idJugador.ToString()).Result;
                 conexionServicio.ActualizarPuntosAsync(idJugador, jugador.Puntaje + 10);
+
             }
             if(estadoPartida == 3)
             {
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS PERDIDO :C";
             }
             HabilitarBotonesLetras(false);
-
+            ListaPartidas ventana = new ListaPartidas(idJugador);
+            MessageBox.Show(lbInstruccionJugador.Content.ToString(), "FIN DE LA PARTIDA");
+            timer.Stop();
+            this.Close();
+            ventana.Show();
         }
 
         private void EnviarLetra(char letra)

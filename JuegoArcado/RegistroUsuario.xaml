@@ -11,7 +11,7 @@
             <ImageBrush ImageSource="/FondoRegistroUsuario.jpg"/>
         </Grid.Background>
         <Button Content="Registrarse" HorizontalAlignment="Left" Margin="642,386,0,0" VerticalAlignment="Top" Height="28" Width="97" FontSize="16" Click="botonClicRegistrarse"/>
-        <Label Content="Regrista tus datos" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top" FontSize="22" Height="46" Width="205" Background="{x:Null}" Foreground="#FF0C0808" FontWeight="Bold"/>
+        <Label Content="Registra tus datos" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top" FontSize="22" Height="46" Width="205" Background="{x:Null}" Foreground="#FF0C0808" FontWeight="Bold"/>
         <TextBox x:Name="cajaDTextoNombre" HorizontalAlignment="Left" Margin="58,65,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Width="312" Height="29" FontSize="18" GotFocus="cajaInteraccionNombre"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Margin="427,386,0,0" VerticalAlignment="Top" Height="28" Width="97" FontSize="16" Click="botonClicCancelar"/>
         <TextBox x:Name="cajaDTextoApellidos" HorizontalAlignment="Left" Margin="427,65,0,0" TextWrapping="Wrap" Text="Apellidos" VerticalAlignment="Top" Width="312" Height="29" FontSize="18" GotFocus="cajaInteraccionApellidos"/>

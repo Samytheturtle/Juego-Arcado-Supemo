@@ -137,12 +137,12 @@ namespace JuegoArcado
                 if(progresoPartida != null)
                 {
                     Char letranueva = progresoPartida.letra;
-                    if(letra != letranueva && letranueva != guion) //letranueva != null
+                    if(letra != letranueva && letranueva != guion && letranueva!='?') //letranueva != null
                     {
                         RecibirLetra(letranueva);
                     }else if (letranueva == '?')
                     {
-                        MessageBox.Show("El JUGADOR A TERMINADO LA PARTIDA!!", ":p");
+                        MessageBox.Show("El JUGADOR A TERMINADO LA PARTIDA!!", "FIN DE LA PARTIDA");
                         ListaPartidas ventana = new ListaPartidas(idRetador);
                         timer.Stop();
                         this.Close();

@@ -114,7 +114,7 @@ namespace JuegoArcado
                 string fechaPartida = fecha.ToString("yyyy-MM-dd");
                 if ("Partida Creada" == serviceAhorcadoClient.RegistrarPartidaAsync(fechaPartida, idJugador, int.Parse(palabra)).Result)
                 {
-                    MessageBox.Show("Partida Creada", "Gane :D");
+                    MessageBox.Show("Partida Creada CON EXITO", "AVISO");
                     Partida nuevaPartida = serviceAhorcadoClient.RecuperarPartidaAsync(fechaPartida, idJugador, int.Parse(palabra)).Result;
                     AhorcadoRetador ahorcadoRetador = new AhorcadoRetador(idJugador, nuevaPartida);
                     this.Close();
