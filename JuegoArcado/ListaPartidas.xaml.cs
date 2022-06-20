@@ -35,7 +35,7 @@ namespace JuegoArcado
         public ListaPartidas(int idJugador)
         {
             InitializeComponent();
-            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Interval = TimeSpan.FromSeconds(7);
             timer.Tick += timer_tick;
             timer.Start();
             this.idJugador = idJugador;
@@ -84,15 +84,9 @@ namespace JuegoArcado
             }
             else
             {
-                dgPartidasJugadores.ItemsSource = "Agua";
+                dgPartidasJugadores.ItemsSource = "Error";
             }
 
-        }
-        private void BotonVerPuntajeGlobal(object sender, RoutedEventArgs e)
-        {
-            VerPuntajes ventanaPuntajesglobales = new VerPuntajes();
-            this.Close();
-            ventanaPuntajesglobales.ShowDialog();
         }
 
         private void BotonCrearPartida(object sender, RoutedEventArgs e)
@@ -129,11 +123,15 @@ namespace JuegoArcado
             EditarInformacionUsuario editarInformacionUsuario = new EditarInformacionUsuario(idJugador);
             this.Close();
             editarInformacionUsuario.Show();
+            timer.Stop();
         }
 
         private void BotonSalir(object sender, RoutedEventArgs e)
         {
-
+            InicioSesion ventanaInicioSesion = new InicioSesion();
+            this.Close();
+            ventanaInicioSesion.Show();
+            timer.Stop();
         }
     }
 }
