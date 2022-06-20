@@ -36,11 +36,6 @@ namespace JuegoArcado
         public AhorcadoJugador()
         {
             InitializeComponent();
-            /*lbNombreRetador.Content = nombreRetador;
-            lbDescripcionPalabra.Content = descripcionPalabra;
-            lbProgresoPalabra.Content = progresoPalabra;
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += ticker;*/
         }
         public AhorcadoJugador(int idJugador,int idPartida)
         {
@@ -112,6 +107,7 @@ namespace JuegoArcado
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS PERDIDO :C";
             }
             HabilitarBotonesLetras(false);
+
         }
 
         private void EnviarLetra(char letra)
@@ -134,8 +130,7 @@ namespace JuegoArcado
             else
             {
                 MessageBox.Show("No se pudo enviar la letra", "Error en la petición");
-            }
-            
+            }           
         }
 
         public void ActualizarProgresoVentana(int progresoMu)
@@ -153,21 +148,7 @@ namespace JuegoArcado
             {
                 HabilitarBotonesLetras(true);
                 ColocarInstruccion("Selecciona una letra");
-            }
-            /*else
-            {
-                if (!progresoPalabra.Contains(guion))
-                {
-                    ColocarInstruccion("PARTIDA FINALIZADA, HAS GANADO!");
-                    
-                }
-                else if(progresoMuñeco == 7)
-                { 
-                    ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); 
-                }
-                
-            }*/
-            
+            }            
         }
 
         private void ColocarExtremidadAhorcado()
@@ -182,7 +163,11 @@ namespace JuegoArcado
 
         private void BtnRendirse(object sender, RoutedEventArgs e)
         {
+            ListaPartidas ventana = new ListaPartidas(idJugador);
+            timer.Stop();
             this.Close();
+            ventana.Show();
+
         }
 
         private void HabilitarBotonesLetras(Boolean accion)

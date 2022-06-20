@@ -35,7 +35,6 @@ namespace JuegoArcado
         public ListaPartidas(int idJugador)
         {
             InitializeComponent();
-            //DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_tick;
             timer.Start();

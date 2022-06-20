@@ -314,7 +314,10 @@ namespace JuegoArcado
 
         private void BtnSalir(object sender, RoutedEventArgs e)
         {
+            ListaPartidas ventana = new ListaPartidas(idRetador);
+            timer.Stop();
             this.Close();
+            ventana.Show();
         }
     }
 }
