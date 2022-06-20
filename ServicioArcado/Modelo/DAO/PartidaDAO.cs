@@ -134,7 +134,7 @@ namespace ServicioArcado.Modelo.DAO
             {
                 try
                 {
-                    string sql = "SELECT fecha, nombre FROM partida INNER JOIN jugador ON partida.idRetador = jugador.IdJugador WHERE partida.idJugador = @idJugador AND estado = 1 ";
+                    string sql = "SELECT fecha, nombre FROM partida INNER JOIN jugador ON partida.idRetador = jugador.IdJugador WHERE partida.idJugador = @idJugador AND estado = 4 ";
                     MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
                     mySqlCommand.Parameters.AddWithValue("@idJugador", idJugador);
                     mySqlCommand.Prepare();
