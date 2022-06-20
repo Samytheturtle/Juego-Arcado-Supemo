@@ -25,7 +25,8 @@ namespace JuegoArcado
     {
         DataTable dataTable = new DataTable();
         public int idJugador;
-        Timer timer;
+        public DispatcherTimer timer = new DispatcherTimer();
+        //Timer timer;
         public ListaPartidas()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace JuegoArcado
         public ListaPartidas(int idJugador)
         {
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
+            //DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(10);
             timer.Tick += timer_tick;
             timer.Start();
@@ -93,6 +94,7 @@ namespace JuegoArcado
             NuevaPartida ventanaNuevaPartida = new NuevaPartida(idJugador);
             this.Close();
             ventanaNuevaPartida.Show();
+            timer.Stop();
             
         }
 
