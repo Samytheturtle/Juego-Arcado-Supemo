@@ -40,11 +40,12 @@ namespace JuegoArcado
             timer.Tick += timer_tick;
             timer.Start();
             this.idJugador = idJugador;
+            dataTable.Columns.Add("IdPartida", typeof(string));
             dataTable.Columns.Add("Fecha Partida", typeof(string));
             dataTable.Columns.Add("Nombre Retador", typeof(string));
             dataTable.Columns.Add("Correo Retador", typeof(string));
             dataTable.Columns.Add("Dificultad", typeof(string));
-            dataTable.Columns.Add("IdPartida", typeof(string));
+            
         }
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
@@ -68,7 +69,7 @@ namespace JuegoArcado
                 string idPalabra = listaPartida[i].idPalabra.ToString();
                 Palabra palabra = serviceAhorcadoClient.RecuperarPalabraAsync(int.Parse(idPalabra)).Result;
                 Jugador jugador = serviceAhorcadoClient.recuperarJugadorAsync(idJugador).Result;
-                dataTable.Rows.Add(fechaPartida,jugador.Nombre,jugador.CorreoElectronico,palabra.dificultad,listaPartida[i].IdPartida);
+                dataTable.Rows.Add(listaPartida[i].IdPartida,fechaPartida, jugador.Nombre,jugador.CorreoElectronico,palabra.dificultad);
             }
             return listaPartida;
 
