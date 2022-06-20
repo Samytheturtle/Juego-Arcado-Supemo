@@ -49,10 +49,6 @@ namespace JuegoArcado
             InitializeComponent();
             InicializarDatos();
 
-            /*lbNombreRetador.Content = nombreRetador;
-            lbDescripcionPalabra.Content = descripcionPalabra;
-            lbProgresoPalabra.Content = progresoPalabra;*/
-
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += ticker;
             
@@ -92,7 +88,7 @@ namespace JuegoArcado
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo comprobar la letra del jugador", "Error de Conexión");
+                    MessageBox.Show("No se pudo comprobar los cambios", "Error de Conexión");
                     timer.Stop();
                 }
             }
@@ -108,6 +104,8 @@ namespace JuegoArcado
             if(estadoPartida == 4)
             {
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS GANADO!";
+                Jugador jugador = conexionServicio.recuperarJugadorAsync(idJugador.ToString()).Result;
+                conexionServicio.ActualizarPuntosAsync(idJugador, jugador.Puntaje + 10);
             }
             if(estadoPartida == 3)
             {
@@ -156,18 +154,19 @@ namespace JuegoArcado
                 HabilitarBotonesLetras(true);
                 ColocarInstruccion("Selecciona una letra");
             }
-            else
+            /*else
             {
                 if (!progresoPalabra.Contains(guion))
                 {
                     ColocarInstruccion("PARTIDA FINALIZADA, HAS GANADO!");
+                    
                 }
                 else if(progresoMuñeco == 7)
                 { 
                     ColocarInstruccion("PARTIDA FINALIZADA, HAS PERDIDO :C"); 
                 }
                 
-            }
+            }*/
             
         }
 
