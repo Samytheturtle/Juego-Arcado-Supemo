@@ -323,5 +323,69 @@ namespace ServicioArcado.Modelo.DAO
 
             return idJugador;
         }
+        public static int RecuperarIdRetadorPartida(int idPartida)
+        {
+            int idRetador = 0;
+            ProgresoPartida partida = null;
+            MySqlConnection connection = ConexionBaseDatos.obtenerConexion();
+            if (connection != null)
+            {
+                try
+                {
+                    string sql = "SELECT idRetador FROM partida WHERE idPartida = @idPartida";
+                    MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
+                    sqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
+                    sqlCommand.Prepare();
+                    MySqlDataReader reader = sqlCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+
+                        idRetador = reader.GetInt32(0);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return idRetador;
+        }
+        public static int RecuperarIdPalabraPartida(int idPartida)
+        {
+            int idPalabra = 0;
+            ProgresoPartida partida = null;
+            MySqlConnection connection = ConexionBaseDatos.obtenerConexion();
+            if (connection != null)
+            {
+                try
+                {
+                    string sql = "SELECT idPalabra FROM partida WHERE idPartida = @idPartida";
+                    MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
+                    sqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
+                    sqlCommand.Prepare();
+                    MySqlDataReader reader = sqlCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+
+                        idPalabra = reader.GetInt32(0);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return idPalabra;
+        }
     }
 }
