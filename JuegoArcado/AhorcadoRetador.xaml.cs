@@ -140,6 +140,13 @@ namespace JuegoArcado
                     if(letra != letranueva && letranueva != guion) //letranueva != null
                     {
                         RecibirLetra(letranueva);
+                    }else if (letranueva == '?')
+                    {
+                        MessageBox.Show("El JUGADOR A TERMINADO LA PARTIDA!!", ":p");
+                        ListaPartidas ventana = new ListaPartidas(idRetador);
+                        timer.Stop();
+                        this.Close();
+                        ventana.Show();
                     }
                 }
                 else

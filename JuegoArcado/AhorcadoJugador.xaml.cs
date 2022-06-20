@@ -163,6 +163,7 @@ namespace JuegoArcado
 
         private void BtnRendirse(object sender, RoutedEventArgs e)
         {
+            conexionServicio.ActualizarProgresoPartidaAsync('?', 0, "", idPartida);
             ListaPartidas ventana = new ListaPartidas(idJugador);
             timer.Stop();
             this.Close();
