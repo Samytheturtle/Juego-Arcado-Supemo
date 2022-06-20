@@ -119,5 +119,9 @@ namespace ServicioArcado
         {
             return PartidaDAO.RecuperarPartida(fecha, idRetador, idPalabra);
         }
+        public int RecuperarIdJugadorPartida(int idPartida)
+        {
+            return PartidaDAO.RecuperarIdJugadorPartida(idPartida);
+        }
     }
 }

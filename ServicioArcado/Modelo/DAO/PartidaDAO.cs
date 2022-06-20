@@ -291,5 +291,37 @@ namespace ServicioArcado.Modelo.DAO
 
             return partida;
         }
+        public static int RecuperarIdJugadorPartida(int idPartida)
+        {
+            int idJugador = 0;
+            ProgresoPartida partida = null;
+            MySqlConnection connection = ConexionBaseDatos.obtenerConexion();
+            if (connection != null)
+            {
+                try
+                {
+                    string sql = "SELECT idJugador FROM partida WHERE idPartida = @idPartida";
+                    MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
+                    sqlCommand.Parameters.AddWithValue("@idPartida", idPartida);
+                    sqlCommand.Prepare();
+                    MySqlDataReader reader = sqlCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        
+                        idJugador = reader.GetInt32(0);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return idJugador;
+        }
     }
 }

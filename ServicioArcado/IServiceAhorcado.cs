@@ -59,5 +59,8 @@ namespace ServicioArcado
         [OperationContract]
         Partida RecuperarPartida(String fecha, int idRetador, int idPalabra);
 
+        [OperationContract]
+        int RecuperarIdJugadorPartida(int idPartida);
+
     }
 }
