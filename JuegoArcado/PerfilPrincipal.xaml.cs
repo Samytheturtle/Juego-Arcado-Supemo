@@ -60,7 +60,6 @@ namespace JuegoArcado
             dataTable.Columns.Add("Jugador Vencido", typeof(string));
             for(int i = 0; i < partidaGanadas.Length; i++)
             {
-                MessageBox.Show(partidaGanadas.Length.ToString());
                 fecha = Convert.ToDateTime(partidaGanadas[i].fechaPartida);
                 dataTable.Rows.Add(fecha.ToString("yyyy-MM-dd") ,partidaGanadas[i].jugadorVencido);
             }
