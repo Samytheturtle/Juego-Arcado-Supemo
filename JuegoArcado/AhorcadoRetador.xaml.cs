@@ -45,8 +45,8 @@ namespace JuegoArcado
         DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer timerEsperaJugador = new DispatcherTimer();
 
-        public static int ESTADO_PARTIDA_PERDIDA = 0;
-        public static int ESTADO_PARTIDA_GANADA = 1;
+        public static int ESTADO_PARTIDA_PERDIDA = 3;
+        public static int ESTADO_PARTIDA_GANADA = 4;
 
 
         public AhorcadoRetador()

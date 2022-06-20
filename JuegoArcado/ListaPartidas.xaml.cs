@@ -120,6 +120,7 @@ namespace JuegoArcado
                 serviceAhorcadoClient.RegistrarJugadorEnPartidaAsync(int.Parse(idPartida), idJugador);
                 this.Close();
                 ahorcadoJugador.Show();
+                timer.Stop();
             }
             
         }

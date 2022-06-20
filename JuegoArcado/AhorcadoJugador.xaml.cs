@@ -87,8 +87,8 @@ namespace JuegoArcado
                         ActualizarProgresoVentana(progresoPartida.validacion);
                         timer.Stop();
                     }
-                    if (progresoPartida.estado == 1) { TerminarPartida(1); } // 1 para Partida Ganada
-                    if (progresoPartida.estado == 0) { TerminarPartida(0); } // 0 para Partdida Perdida
+                    if (progresoPartida.estado == 3) { TerminarPartida(3); } // 3 para Partida Ganada
+                    if (progresoPartida.estado == 4) { TerminarPartida(4); } // 4 para Partdida Perdida
                 }
                 else
                 {
@@ -105,11 +105,11 @@ namespace JuegoArcado
 
         private void TerminarPartida(int estadoPartida)
         {
-            if(estadoPartida == 1)
+            if(estadoPartida == 4)
             {
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS GANADO!";
             }
-            if(estadoPartida == 0)
+            if(estadoPartida == 3)
             {
                 lbInstruccionJugador.Content = "PARTIDA TERMINADA, HAS PERDIDO :C";
             }
@@ -140,10 +140,10 @@ namespace JuegoArcado
             
         }
 
-        public void ActualizarProgresoVentana(int progresoMuñ)
+        public void ActualizarProgresoVentana(int progresoMu)
         {
-            if (progresoMuñ == 0) { progresoMuñeco++; }
-            if (progresoMuñ == 2) {
+            if (progresoMu == 0) { progresoMuñeco++; }
+            if (progresoMu == 2) {
                 if (progresoMuñeco != 1)
                 {
                     progresoMuñeco--;
