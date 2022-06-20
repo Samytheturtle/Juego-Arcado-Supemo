@@ -26,6 +26,7 @@ namespace JuegoArcado
         DataTable dataTable = new DataTable();
         public int idJugador;
         public DispatcherTimer timer = new DispatcherTimer();
+
         //Timer timer;
         public ListaPartidas()
         {
@@ -35,10 +36,15 @@ namespace JuegoArcado
         {
             InitializeComponent();
             //DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(10);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_tick;
             timer.Start();
             this.idJugador = idJugador;
+            dataTable.Columns.Add("Fecha Partida", typeof(string));
+            dataTable.Columns.Add("Nombre Retador", typeof(string));
+            dataTable.Columns.Add("Correo Retador", typeof(string));
+            dataTable.Columns.Add("Dificultad", typeof(string));
+            dataTable.Columns.Add("IdPartida", typeof(string));
         }
 
         private void BotonVerPerfil(object sender, RoutedEventArgs e)
@@ -49,21 +55,20 @@ namespace JuegoArcado
         }
         public Partida[] actualizarPartidas()
         {
-            
-            dataTable.Columns.Add("Fecha Partida", typeof(string));
-            dataTable.Columns.Add("Nombre Retador", typeof(string));
-            dataTable.Columns.Add("Correo Retador", typeof(string));
-            dataTable.Columns.Add("Dificultad", typeof(string));
+            DateTime fecha;
             ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
             Partida[] listaPartida;
             listaPartida = serviceAhorcadoClient.RecuperarPartidasDisponiblesAsync().Result;
+            dataTable.Rows.Clear();
             for (int i = 0; i < listaPartida.Length; i++)
             {
+                fecha = Convert.ToDateTime(listaPartida[i].fecha);
+                string fechaPartida = fecha.ToString("yyyy-MM-dd");
                 string idJugador = listaPartida[i].idRetador.ToString();
-                string idPalabra = listaPartida[i].IdPartida.ToString();
+                string idPalabra = listaPartida[i].idPalabra.ToString();
                 Palabra palabra = serviceAhorcadoClient.RecuperarPalabraAsync(int.Parse(idPalabra)).Result;
                 Jugador jugador = serviceAhorcadoClient.recuperarJugadorAsync(idJugador).Result;
-                dataTable.Rows.Add(listaPartida[i].fecha,jugador.Nombre,jugador.CorreoElectronico,palabra.dificultad);
+                dataTable.Rows.Add(fechaPartida,jugador.Nombre,jugador.CorreoElectronico,palabra.dificultad,listaPartida[i].IdPartida);
             }
             return listaPartida;
 
@@ -74,6 +79,7 @@ namespace JuegoArcado
            
             if (actualizarPartidas() != null)
             {
+                
                 dgPartidasJugadores.ItemsSource = dataTable.DefaultView;
             }
             else
@@ -100,7 +106,21 @@ namespace JuegoArcado
 
         private void BotonIniciarPartida(object sender, RoutedEventArgs e)
         {
-           // dgPartidasJugadores
+            if (dgPartidasJugadores.SelectedItems == null)
+            {
+                MessageBox.Show("Selecciona una partida", "Error");
+            }
+            else
+            {
+                ServicioAhorcadoSupremo.ServiceAhorcadoClient serviceAhorcadoClient = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
+                DataRowView dataRowView = (DataRowView)dgPartidasJugadores.SelectedItems[0];
+                string idPartida = dataRowView["IdPartida"].ToString();
+                AhorcadoJugador ahorcadoJugador = new AhorcadoJugador(idJugador, int.Parse(idPartida));
+                serviceAhorcadoClient.RegistrarJugadorEnPartidaAsync(int.Parse(idPartida), idJugador);
+                this.Close();
+                ahorcadoJugador.Show();
+            }
+            
         }
 
         private void BotonModificarPerfil(object sender, RoutedEventArgs e)

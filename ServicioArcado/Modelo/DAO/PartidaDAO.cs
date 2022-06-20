@@ -9,7 +9,7 @@ namespace ServicioArcado.Modelo.DAO
 {
     public class PartidaDAO
     {
-        public static String SELECT_PARTIDAS_DISPONIBLES = "SELECT idPartida, fecha, idRetador, idPalabra FROM partida WHERE idJugador IS null";
+        public static String SELECT_PARTIDAS_DISPONIBLES = "SELECT idPartida, fecha, idRetador, idPalabra FROM partida WHERE idJugador = 0";
 
 
         public static string RegistrarPartida(String fecha, int idRetador, int idPalabra)

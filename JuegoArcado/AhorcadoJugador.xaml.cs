@@ -21,7 +21,8 @@ namespace JuegoArcado
     /// </summary>
     public partial class AhorcadoJugador : Window
     {
-        public int idPartida = 1;
+        private int idJugador;
+        public int idPartida;
         public String nombreRetador = "";
         public String descripcionPalabra = "";
         public String progresoPalabra = "";
@@ -40,6 +41,17 @@ namespace JuegoArcado
             lbProgresoPalabra.Content = progresoPalabra;
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += ticker;
+        }
+        public AhorcadoJugador(int idJugador,int idPartida)
+        {
+            InitializeComponent();
+            lbNombreRetador.Content = nombreRetador;
+            lbDescripcionPalabra.Content = descripcionPalabra;
+            lbProgresoPalabra.Content = progresoPalabra;
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += ticker;
+            this.idJugador = idJugador;
+            this.idPartida=idPartida;
         }
 
         private void ticker(object? sender, EventArgs e)
