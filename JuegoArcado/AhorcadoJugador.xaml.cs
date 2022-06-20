@@ -80,6 +80,14 @@ namespace JuegoArcado
                     }
                     if (progresoPartida.estado == 3) { TerminarPartida(3); } // 3 para Partida Ganada
                     if (progresoPartida.estado == 4) { TerminarPartida(4); } // 4 para Partdida Perdida
+                    if (progresoPartida.letra == '?') 
+                    {
+                        ListaPartidas ventana = new ListaPartidas(idJugador);
+                        MessageBox.Show("El RETADOR A ABANDONADO A TU SUERTE", ":p");
+                        timer.Stop();
+                        this.Close();
+                        ventana.Show();
+                    }
                 }
                 else
                 {

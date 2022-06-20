@@ -322,6 +322,7 @@ namespace JuegoArcado
         private void BtnSalir(object sender, RoutedEventArgs e)
         {
             ListaPartidas ventana = new ListaPartidas(idRetador);
+            conexionServicio.ActualizarProgresoPartidaAsync('?', validacion, progresoPalabra, idPartida);
             timer.Stop();
             this.Close();
             ventana.Show();
