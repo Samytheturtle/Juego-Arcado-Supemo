@@ -157,6 +157,10 @@ namespace ServicioAhorcadoSupremo
         
         private int idRetadorField;
         
+        private char letraField;
+        
+        private int validacionField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdPartida
         {
@@ -232,6 +236,32 @@ namespace ServicioAhorcadoSupremo
             set
             {
                 this.idRetadorField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public char letra
+        {
+            get
+            {
+                return this.letraField;
+            }
+            set
+            {
+                this.letraField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int validacion
+        {
+            get
+            {
+                return this.validacionField;
+            }
+            set
+            {
+                this.validacionField = value;
             }
         }
     }
