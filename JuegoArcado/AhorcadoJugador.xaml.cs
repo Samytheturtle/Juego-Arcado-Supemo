@@ -60,10 +60,8 @@ namespace JuegoArcado
                         ActualizarProgresoVentana(progresoPartida.validacion);
                         timer.Stop();
                     }
-
                     if (progresoPartida.estado == 1) { TerminarPartida(1); } // 1 para Partida Ganada
                     if (progresoPartida.estado == 0) { TerminarPartida(0); } // 0 para Partdida Perdida
-
                 }
                 else
                 {

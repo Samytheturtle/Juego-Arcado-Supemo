@@ -43,6 +43,7 @@ namespace JuegoArcado
         public static int PARTIDA_GANADA = 4;
         ServiceAhorcadoClient conexionServicio = new ServiceAhorcadoClient();
         DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer timerEsperaJugador = new DispatcherTimer();
 
         public static int ESTADO_PARTIDA_PERDIDA = 0;
         public static int ESTADO_PARTIDA_GANADA = 1;
@@ -69,11 +70,9 @@ namespace JuegoArcado
             this.idRetador = idRetador; 
             this.partida = partida;
             InicializarDatos();
-            //palabraCompleta = "WINDOWS";
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += ticker;
-            timer.Start();
+            EsperarJugador();
         }
+
 
         private void InicializarDatos()
         {
@@ -96,6 +95,46 @@ namespace JuegoArcado
             else { MessageBox.Show("No se recuperó la información de la palabra, verifique su conexión", "Error de Solicitud"); }       
         }
 
+        private void EsperarJugador()
+        {
+
+            timerEsperaJugador.Interval = TimeSpan.FromSeconds(5);
+            timerEsperaJugador.Tick += tickerEsperaJugador;
+            timerEsperaJugador.Start();
+
+        }
+
+        private void tickerEsperaJugador(object? sender, EventArgs e)
+        {
+            if (conexionServicio != null)
+            {
+                DateTime fechaTemp = Convert.ToDateTime(partida.fecha);
+                String fechaFormatoTemp = fechaTemp.ToString("yyyy-MM-dd");
+                Partida partidaTemp = conexionServicio.RecuperarPartidaAsync(fechaFormatoTemp, partida.idRetador, partida.idPalabra).Result;
+                if (partidaTemp != null)
+                {
+                    int idJugadorTemp = partidaTemp.idJugador;
+                    if (idJugadorTemp != 0)
+                    {
+                        lbInstruccionRetador.Content = "¡Se ha unido un jugador!, Esperando letra...";
+                        Jugador jugador = conexionServicio.recuperarJugadorAsync(idJugadorTemp.ToString()).Result;
+                        lbNombreJugador.Content = jugador.Nombre;
+                        timerEsperaJugador.Stop();
+                        ComenzarPartida();
+                    }
+                }
+                else { MessageBox.Show("No se pudo comprobar al jugador", "Error de SQL"); timerEsperaJugador.Stop(); }
+            }
+            else { MessageBox.Show("No se pudo comprobar al jugador", "Error de Solicitud"); timerEsperaJugador.Stop(); }
+        }
+
+        private void ComenzarPartida()
+        {
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += ticker;
+            timer.Start();
+        }
+
         private void ticker(object? sender, EventArgs e)
         {
             ComprobarSiHayNuevaLetra();
@@ -109,7 +148,7 @@ namespace JuegoArcado
                 if(progresoPartida != null)
                 {
                     Char letranueva = progresoPartida.letra;
-                    if(letra != letranueva && letranueva != guion)
+                    if(letra != letranueva && letranueva != guion && !letranueva.Equals(null))
                     {
                         RecibirLetra(letranueva);
                     }
