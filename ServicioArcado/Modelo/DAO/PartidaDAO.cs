@@ -262,7 +262,7 @@ namespace ServicioArcado.Modelo.DAO
             {
                 try
                 {
-                    string sql = "SELECT idPartida, fecha, idRetador, idJugador, idPalabra FROM partida WHERE fecha=@fecha and idRetador=idRetador and idPalabra=@idPalabra";
+                    string sql = "SELECT idPartida, fecha, idRetador, idJugador, idPalabra FROM partida WHERE fecha=@fecha and idRetador=@idRetador and idPalabra=@idPalabra";
                     MySqlCommand sqlCommand = new MySqlCommand(sql, connection);
                     sqlCommand.Parameters.AddWithValue("@fecha", fecha);
                     sqlCommand.Parameters.AddWithValue("@idRetador", idRetador);

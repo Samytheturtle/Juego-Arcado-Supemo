@@ -31,7 +31,7 @@ namespace JuegoArcado
         public String progresoPalabra = "";
         public Char[] cadenaProgresoPalabra;
 
-        public Char letra = 'A';
+        public Char letra;
         public int progresoMuñeco = 1;
         public char guion = '-';
         public int validacion;
