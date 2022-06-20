@@ -40,7 +40,35 @@ namespace ServicioArcado.Modelo.DAO
 
             return idJugador;
         }
+        public static int VerificarCorreo(string correo)
+        {
+            int correoValido = 0;
+            MySqlConnection conexionBD = ConexionBaseDatos.obtenerConexion();
+            if (conexionBD != null)
+            {
+                try
+                {
+                    string sql = "SELECT correoElectronico FROM jugador WHERE correoElectronico LIKE @correo";
+                    MySqlCommand mySqlCommand = new MySqlCommand(sql, conexionBD);
+                    mySqlCommand.Parameters.AddWithValue("@correo", correo);
+                    MySqlDataReader respuestaBD = mySqlCommand.ExecuteReader();
+                    if (respuestaBD.Read())
+                    {
+                        correoValido = 1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    correoValido = 0;
+                }
+            }
+            else
+            {
+                correoValido = 2;
+            }
 
+            return correoValido;
+        }
         public static string RegistrarJugador(Jugador jugador)
         {
             string jugadorMensaje = "";

@@ -132,5 +132,10 @@ namespace ServicioArcado
         {
             return PartidaDAO.RecuperarIdRetadorPartida(idRetador);
         }
+
+        public int VerificarCorreo(string correo)
+        {
+            return JugadorDAO.VerificarCorreo(correo);
+        }
     }
 }

@@ -527,6 +527,9 @@ namespace ServicioAhorcadoSupremo
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/VerificarJugador", ReplyAction="http://tempuri.org/IServiceAhorcado/VerificarJugadorResponse")]
         System.Threading.Tasks.Task<int> VerificarJugadorAsync(string correo, string password);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/VerificarCorreo", ReplyAction="http://tempuri.org/IServiceAhorcado/VerificarCorreoResponse")]
+        System.Threading.Tasks.Task<int> VerificarCorreoAsync(string correo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAhorcado/RegistrarJugador", ReplyAction="http://tempuri.org/IServiceAhorcado/RegistrarJugadorResponse")]
         System.Threading.Tasks.Task<string> RegistrarJugadorAsync(ServicioAhorcadoSupremo.Jugador jugador);
         
@@ -635,6 +638,11 @@ namespace ServicioAhorcadoSupremo
         public System.Threading.Tasks.Task<int> VerificarJugadorAsync(string correo, string password)
         {
             return base.Channel.VerificarJugadorAsync(correo, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> VerificarCorreoAsync(string correo)
+        {
+            return base.Channel.VerificarCorreoAsync(correo);
         }
         
         public System.Threading.Tasks.Task<string> RegistrarJugadorAsync(ServicioAhorcadoSupremo.Jugador jugador)

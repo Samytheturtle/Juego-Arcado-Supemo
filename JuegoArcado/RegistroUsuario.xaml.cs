@@ -65,7 +65,7 @@ namespace JuegoArcado
 
         private void botonClicRegistrarse(object sender, RoutedEventArgs e)
         {
-            if (!validarCamposVacios() && validarCorreo()>0)
+            if (!validarCamposVacios() && validarCorreo()==0)
             {
                 registrarJugador();
                 AlertaExitoso ventanaAlertaExitoso = new AlertaExitoso();
@@ -75,9 +75,12 @@ namespace JuegoArcado
                 this.Close();
                 ventanaAlertaExitoso.ShowDialog();
             }
-            else if(validarCorreo()==0)
+            else if(validarCorreo()==1)
             {
-                MessageBox.Show("El correo que usted ingreso ya tiene una cuenta registrada");
+                MessageBox.Show("El correo que usted ingreso ya tiene una cuenta registrada", "MENSAJE ERROR");
+            }else if (validarCorreo() > 1)
+            {
+                MessageBox.Show("ERROR EN LA BASE DE DATOS", "Error en la petición");
             }
         }
         private Boolean validarCamposVacios()
@@ -118,8 +121,10 @@ namespace JuegoArcado
         }
         private int validarCorreo()
         {
-            ServicioAhorcadoSupremo.ServiceAhorcadoClient validarJugadores = new ServicioAhorcadoSupremo.ServiceAhorcadoClient();
-            int idJugador = 1;
+            ServiceAhorcadoClient validarJugadores = new ServiceAhorcadoClient();
+            int correoValidado=validarJugadores.VerificarCorreoAsync(cajaDTextoCorreo.Text).Result;
+            return correoValidado;
+            /*int idJugador = 1;
             int correoValido = 1;
 
             List<Jugador> ListaDeJugadores = new List<Jugador>();
@@ -135,9 +140,7 @@ namespace JuegoArcado
                 {
                     correoValido = 0;
                 }
-            }
-
-            return correoValido;
+            }*/
         }
         private void registrarJugador()
         {

@@ -17,6 +17,9 @@ namespace ServicioArcado
         int VerificarJugador(string correo, string password);
 
         [OperationContract]
+        int VerificarCorreo(string correo);
+
+        [OperationContract]
         string RegistrarJugador(Jugador jugador);
 
         [OperationContract]
