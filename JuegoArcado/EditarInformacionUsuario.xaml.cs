@@ -68,42 +68,25 @@ namespace JuegoArcado
             Boolean validacion = false;
             if (tbNombre.Text.Equals(""))
             {
-                MessageBox.Show("Nombre no puede ser vacio", "Error");
-                validacion = false;
+                MessageBox.Show("El nombre no se puede quedar vacío", "Campo Vacío");
+
+            }else if (tbApellidos.Text.Equals(""))
+            {
+                MessageBox.Show("Los Apellidos no se pueden quedar vacíos", "Campo Vacío");
+
+            }else if (tbCelular.Text.Equals(""))
+            {
+                MessageBox.Show("El Celular no puede ser vacío", "Campo Vacío");
+
+            }else if (tbContrasena.Text.Equals("")){
+                MessageBox.Show("La contraseña no puede ser vacia", "Campo Vacío");
+
+            }else if (cFechaNacimiento.SelectedDate == null)
+            {
+                MessageBox.Show("Seleccione una fecha", "Fecha Vacía");
             }
             else
             {
-                recuperarDatosJugador.Nombre = tbNombre.Text;
-                validacion = true;
-            }
-            if (tbApellidos.Text.Equals(""))
-            {
-                MessageBox.Show("Apellidos no puede ser vacio", "Error");
-                validacion = false;
-            }
-            else
-            {
-                recuperarDatosJugador.Apellidos = tbApellidos.Text;
-                validacion = true;
-            }
-            if (tbCelular.Text.Equals(""))
-            {
-                MessageBox.Show("Celular no puede ser vacio", "Error");
-                validacion = false;
-            }
-            else
-            {
-                recuperarDatosJugador.Celular = tbCelular.Text;
-                validacion = true;
-            }
-            if (cFechaNacimiento.SelectedDate==null)
-            {
-                MessageBox.Show("Seleccione la fecha", "Error");
-                validacion = false;
-            }
-            else
-            {
-                recuperarDatosJugador.FechaNacimiento = cFechaNacimiento.SelectedDate.ToString();
                 validacion = true;
             }
             return validacion;
